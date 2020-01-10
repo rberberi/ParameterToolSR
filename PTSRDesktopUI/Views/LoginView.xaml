@@ -31,17 +31,17 @@
                    FontFamily="Segoe UI Light" FontWeight="Bold">
             Username:
         </TextBlock>
-        <TextBox x:Name="userName" Grid.Row="1" Grid.Column="2" MinWidth="150" Margin="10 0 0 15"/>
+        <TextBox x:Name="UserName" Grid.Row="1" Grid.Column="2" MinWidth="150" Margin="10 0 0 15"/>
 
         <!-- Password Row -->
         <TextBlock Grid.Row="2" Grid.Column="1" Margin="0 0 0 20"
                    FontFamily="Segoe UI Light" FontWeight="Bold">
             Password:
         </TextBlock>
-        <PasswordBox x:Name="password" Grid.Row="2" Grid.Column="2" MinWidth="150" Margin="10 0 0 15"/>
+        <PasswordBox x:Name="Password" Grid.Row="2" Grid.Column="2" MinWidth="150" Margin="10 0 0 15"/>
 
         <!-- Login Button Row-->
-        <Button x:Name="loginButton" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
+        <Button x:Name="LogIn" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
                 HorizontalAlignment="Center" Padding="20 5"
                 FontFamily="Segoe UI Light" FontWeight="Bold" Background="AntiqueWhite" Margin="70,0,71,0">
             Login

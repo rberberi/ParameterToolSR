@@ -9,5 +9,11 @@ namespace PTSRDesktopUI.ViewModels
 {
     public class ShellViewModel:Conductor<object>
     {
+        LoginViewModel _loginVM;
+        public ShellViewModel(LoginViewModel loginVM)
+        {
+            _loginVM = loginVM;
+            ActivateItem(_loginVM);
+        }
     }
 }
