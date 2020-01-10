@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PTSRDesktopUI.ViewModels
 {
@@ -61,6 +62,28 @@ namespace PTSRDesktopUI.ViewModels
         //LogIn function
         public void LogIn()
         {
+            try
+            {
+
+                Helpers.DataAccess db = new Helpers.DataAccess();
+
+                string value = db.getUser(UserName, Password);
+                int test = Convert.ToInt16(value); 
+                if (test == 1)
+                {
+                    MessageBox.Show("Login Successful");
+                }
+                else 
+                {
+                    MessageBox.Show("Username or Password is incorrect");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
 
         }
     }
