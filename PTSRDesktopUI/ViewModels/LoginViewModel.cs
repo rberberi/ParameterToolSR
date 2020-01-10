@@ -61,7 +61,7 @@ namespace PTSRDesktopUI.ViewModels
         //LogIn function
         public void LogIn()
         {
-            Console.WriteLine();
+
         }
     }
 }
