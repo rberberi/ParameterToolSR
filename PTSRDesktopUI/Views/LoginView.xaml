@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="PTSRDesktopUI.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PTSRDesktopUI.Views"
+             mc:Ignorable="d" Background="White" FontSize="24"
+             d:DesignHeight="425" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="245*"/>
+            <ColumnDefinition Width="36*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 0 0 20"
+                   HorizontalAlignment="Center" FontSize="50" FontFamily="Segoe UI Light" FontWeight="Bold">
+            Login Form
+        </TextBlock>
+
+        <!-- Username Row -->
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 15" 
+                   FontFamily="Segoe UI Light" FontWeight="Bold">
+            Username:
+        </TextBlock>
+        <TextBox x:Name="userName" Grid.Row="1" Grid.Column="2" MinWidth="150" Margin="10 0 0 15"/>
+
+        <!-- Password Row -->
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0 0 0 20"
+                   FontFamily="Segoe UI Light" FontWeight="Bold">
+            Password:
+        </TextBlock>
+        <PasswordBox x:Name="password" Grid.Row="2" Grid.Column="2" MinWidth="150" Margin="10 0 0 15"/>
+
+        <!-- Login Button Row-->
+        <Button x:Name="loginButton" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
+                HorizontalAlignment="Center" Padding="20 5"
+                FontFamily="Segoe UI Light" FontWeight="Bold" Background="AntiqueWhite" Margin="70,0,71,0">
+            Login
+        </Button>
+    </Grid>
+</UserControl>
