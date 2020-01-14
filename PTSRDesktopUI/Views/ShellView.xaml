@@ -9,11 +9,8 @@
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" FontSize="18">
-            <MenuItem Header="_File">
-
-            </MenuItem>
-            <MenuItem Header="_Account">
-                <MenuItem x:Name="LoginScreen" Header="_Login" />
+            <MenuItem Header="_Benutzer">
+                <MenuItem x:Name="LogOut" Header="_Ausloggen" />
             </MenuItem>
         </Menu>
         <Grid>

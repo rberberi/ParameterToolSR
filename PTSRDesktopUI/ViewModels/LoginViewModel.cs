@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using PTSRDesktopUI.EventModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,12 @@ namespace PTSRDesktopUI.ViewModels
     {
         private string _userName;
         private string _password;
+        private IEventAggregator _events;
+
+        public LoginViewModel(IEventAggregator events)
+        {
+            _events = events;
+        }
 
         //Username Getter-Setter
         public string UserName
@@ -71,7 +78,7 @@ namespace PTSRDesktopUI.ViewModels
                 int test = Convert.ToInt16(value); 
                 if (test == 1)
                 {
-                    MessageBox.Show("Login Successful");
+                    _events.PublishOnUIThread(new LogOnEvent());
                 }
                 else 
                 {

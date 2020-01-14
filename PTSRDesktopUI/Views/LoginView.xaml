@@ -22,20 +22,20 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 0 0 20"
                    HorizontalAlignment="Center" FontSize="50" FontFamily="Segoe UI Light" FontWeight="Bold">
-            Login Form
+            Einloggen
         </TextBlock>
 
         <!-- Username Row -->
         <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 15" 
                    FontFamily="Segoe UI Light" FontWeight="Bold">
-            Username:
+            Benutzername:
         </TextBlock>
         <TextBox x:Name="UserName" Grid.Row="1" Grid.Column="2" MinWidth="150" Margin="10 0 0 15"/>
 
         <!-- Password Row -->
         <TextBlock Grid.Row="2" Grid.Column="1" Margin="0 0 0 20"
                    FontFamily="Segoe UI Light" FontWeight="Bold">
-            Password:
+            Passwort:
         </TextBlock>
         <PasswordBox x:Name="Password" Grid.Row="2" Grid.Column="2" MinWidth="150" Margin="10 0 0 15"/>
 
@@ -43,7 +43,7 @@
         <Button x:Name="LogIn" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" 
                 HorizontalAlignment="Center" Padding="20 5"
                 FontFamily="Segoe UI Light" FontWeight="Bold" Background="AntiqueWhite" Margin="70,0,71,0">
-            Login
+            Einloggen
         </Button>
     </Grid>
 </UserControl>
