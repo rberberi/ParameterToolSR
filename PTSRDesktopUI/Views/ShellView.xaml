@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PTSRDesktopUI.Views"
-        mc:Ignorable="d" FontSize="18"
-        Title="ShellView" Height="450" Width="800">
+        mc:Ignorable="d" FontSize="18" 
+        Title="Parameter Tool" Height="800" Width="800" Background="#FFE0DEC4" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <DockPanel>
-        <Menu DockPanel.Dock="Top" FontSize="18">
+        <Menu DockPanel.Dock="Top" FontSize="18" Background="#FFD6C8A0">
             <MenuItem Header="_Benutzer">
-                <MenuItem x:Name="LogOut" Header="_Ausloggen" />
+                <MenuItem x:Name="LogOut" Header="_Ausloggen" Background="#FFD6C8A0" />
             </MenuItem>
         </Menu>
         <Grid>
