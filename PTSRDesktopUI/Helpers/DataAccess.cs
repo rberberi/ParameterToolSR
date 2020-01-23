@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using PTSRDesktopUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,6 +28,33 @@ namespace PTSRDesktopUI.Helpers
                     }
                 }
                 return value;
+            }
+        }
+
+        public string getUsername(string userName)
+        {
+            string value = "";
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var username = connection.Query("dbo.getUsername @Username", new { Username = userName });
+                foreach (IDictionary<string, object> row in username)
+                {
+                    foreach (var pair in row)
+                    {
+                        value = Convert.ToString(pair.Value);
+                    }
+                }
+                return value;
+            }
+        }
+
+        public List<ChangesModel> GetChanges(string controller)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("routineChangesDB")))
+            {
+                var output = connection.Query<ChangesModel>("dbo.getChanges @controller", new { controller = controller }).ToList();
+                return output;
             }
         }
 

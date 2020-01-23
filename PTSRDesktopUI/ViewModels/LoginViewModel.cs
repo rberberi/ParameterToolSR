@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
 using PTSRDesktopUI.EventModels;
+using PTSRDesktopUI.Helpers;
+using PTSRDesktopUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,17 +74,17 @@ namespace PTSRDesktopUI.ViewModels
             try
             {
 
-                Helpers.DataAccess db = new Helpers.DataAccess();
+                DataAccess db = new DataAccess();
 
                 string value = db.getUser(UserName, Password);
                 int test = Convert.ToInt16(value); 
                 if (test == 1)
-                {
+                {            
                     _events.PublishOnUIThread(new LogOnEvent());
                 }
                 else 
                 {
-                    MessageBox.Show("Username or Password is incorrect");
+                    MessageBox.Show("Anmeldedaten sind falsch oder Benutzer existiert nicht!");
                 }
 
             }

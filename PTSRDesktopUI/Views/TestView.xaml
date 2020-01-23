@@ -5,9 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PTSRDesktopUI.Views"
              mc:Ignorable="d" Background="White" FontSize="24"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="800">
     <Grid>
-        <TextBlock x:Name="User">Login Success</TextBlock>
+        <DataGrid x:Name="Changes" AlternatingRowBackground="Beige" CanUserAddRows="False"
+                  AutoGenerateColumns="False" Padding="5">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="Alter Parameter" Binding="{Binding Path=reference_value}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Neuer Parameter" Binding="{Binding Path=new_value}"/>
+                <DataGridCheckBoxColumn Header="Validiert" Binding="{Binding Path=confirmed}" />
+            </DataGrid.Columns>
+        </DataGrid>
             
     </Grid>
 </UserControl>

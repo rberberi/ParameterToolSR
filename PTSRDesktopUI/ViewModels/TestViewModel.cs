@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using PTSRDesktopUI.Helpers;
+using PTSRDesktopUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +11,14 @@ namespace PTSRDesktopUI.ViewModels
 {
     public class TestViewModel : Screen
     {
-        //private string _user;
+        //public List<ChangesModel> changes = new List<ChangesModel>();
+        public BindableCollection<ChangesModel> Changes { get; set; }
+        public string anlage = "OP30";
 
-        //public string User
-        //{
-        //    get
-        //    {
-        //        return _user;
-        //    }
-        //    set
-        //    {
-        //        _user = value;
-        //        NotifyOfPropertyChange(()=>User);
-        //    }
-        //}
-
+        public TestViewModel()
+        {
+            DataAccess db = new DataAccess();
+            Changes = new BindableCollection<ChangesModel>(db.GetChanges(anlage));
+        }
     }
 }
