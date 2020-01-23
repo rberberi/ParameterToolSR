@@ -93,7 +93,6 @@ namespace PTSRDesktopUI.ViewModels
 
                 MessageBox.Show(ex.Message);
             }
-
         }
     }
 }

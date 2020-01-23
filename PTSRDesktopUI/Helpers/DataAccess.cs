@@ -31,29 +31,21 @@ namespace PTSRDesktopUI.Helpers
             }
         }
 
-        public string getUsername(string userName)
-        {
-            string value = "";
 
+        public List<ChangesModel> GetChanges()
+        {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
             {
-                var username = connection.Query("dbo.getUsername @Username", new { Username = userName });
-                foreach (IDictionary<string, object> row in username)
-                {
-                    foreach (var pair in row)
-                    {
-                        value = Convert.ToString(pair.Value);
-                    }
-                }
-                return value;
+                var output = connection.Query<ChangesModel>("dbo.getChanges").ToList();
+                return output;
             }
         }
 
-        public List<ChangesModel> GetChanges(string controller)
+        public List<ChangesModel> GetChangesController(string controller)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("routineChangesDB")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
             {
-                var output = connection.Query<ChangesModel>("dbo.getChanges @controller", new { controller = controller }).ToList();
+                var output = connection.Query<ChangesModel>("dbo.getChangesController @Controller", new { Controller = controller }).ToList();
                 return output;
             }
         }

@@ -20,8 +20,8 @@
             </Grid.ColumnDefinitions>
             <StackPanel x:Name="Menu" Grid.Column="0" Margin="5 5 5 5"
                         Visibility="{Binding IsMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
-                <Button Content="Anlage" Padding="10"/>
-                <Button Content="Anlage" Padding="10"/>
+                <Button x:Name="Handle" Content="Alle" Padding="10" />
+                <Button x:Name="MenuSelect" Content="R40 A" Padding="10"/>
                 <Button Content="Anlage" Padding="10"/>
                 <Button Content="Anlage" Padding="10"/>
                 <Button Content="Anlage" Padding="10"/>

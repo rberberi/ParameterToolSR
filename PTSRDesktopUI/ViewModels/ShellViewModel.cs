@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PTSRDesktopUI.ViewModels
 {
@@ -14,14 +15,16 @@ namespace PTSRDesktopUI.ViewModels
     {
         private IEventAggregator _events;
         private TestViewModel _testVM;
+        private TestControllerViewModel _testCM;
         private SimpleContainer _container;
         public int showMenu = 0; //1-Show Menu, 0-HideMenu
 
-        public ShellViewModel(IEventAggregator events, TestViewModel testVM,
+        public ShellViewModel(IEventAggregator events, TestViewModel testVM, TestControllerViewModel testCM,
             SimpleContainer container, LoginViewModel loginVM)
         {
             _events = events;
             _testVM = testVM;
+            _testCM = testCM;
             _container = container;
 
             _events.Subscribe(this);
@@ -45,12 +48,17 @@ namespace PTSRDesktopUI.ViewModels
             }
         }
 
+        //LogIn function
+        public void MenuSelect()
+        {
+            ActivateItem(_testCM);
+        }
+
         public void Handle(LogOnEvent message)
         {
             showMenu = 1;
             NotifyOfPropertyChange(() => IsMenuVisible);
             ActivateItem(_testVM);
-
         }
 
         public void LogOut()
