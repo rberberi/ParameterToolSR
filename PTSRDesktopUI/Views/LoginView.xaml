@@ -21,7 +21,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="1"  Margin="0 300 0 60"
+        <TextBlock Grid.Row="0" Grid.Column="1"  Margin="0 230 0 60"
                    HorizontalAlignment="Center" FontSize="50" FontFamily="Segoe UI Light" 
                    FontWeight="Bold">
             Einloggen

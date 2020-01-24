@@ -21,11 +21,11 @@
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Controller" Binding="{Binding Path=Controller}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                    Header="Parameter/Toleranz Name" Binding="{Binding Path=ParameterName}"/>
+                                    Header="Parameter" Binding="{Binding Path=ParameterName}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                    Header="Altes Wert" Binding="{Binding Path=WertAlt}"/>
+                                    Header="Alter Wert" Binding="{Binding Path=WertAlt}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                    Header="Neues Wert" Binding="{Binding Path=WertNeu}"/>
+                                    Header="Neuer Wert" Binding="{Binding Path=WertNeu}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Änderungsdatum" Binding="{Binding Path=Aenderungsdatum}"/>
                 <DataGridCheckBoxColumn Header="Ist Validiert" ElementStyle="{DynamicResource MetroDataGridCheckBox}"       
