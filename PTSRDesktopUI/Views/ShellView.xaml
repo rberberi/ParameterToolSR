@@ -1,16 +1,60 @@
-﻿<Window x:Class="PTSRDesktopUI.Views.ShellView"
+﻿<Controls:MetroWindow x:Class="PTSRDesktopUI.Views.ShellView"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PTSRDesktopUI.Views"
-        mc:Ignorable="d" FontSize="18" 
-        Title="Parameter Tool" Height="800" Width="800" Background="#FFE0DEC4" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d" FontSize="18" ShowIconOnTitleBar="True" ShowTitleBar="True"
+        Title="Parameter Tool" Height="800" Width="800" 
+                      Icon="C:\WPF Projekte\ParameterToolSR\PTSRDesktopUI\Images\logo3.ico"
+                      WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <ToggleButton x:Name="ThemeToggleBtn" Checked="ThemeToggleBtn_Checked_1"
+                          Unchecked="ThemeToggleBtn_Unchecked">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconModern Width="24" Height="24" Kind="DrawBrush" />
+                    <TextBlock x:Name="TextTheme" Margin="4 0 0 0" VerticalAlignment="Center" 
+                               Text="Dunkel" />
+                </StackPanel>
+            </ToggleButton>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+    <!--Resource Styles-->
+    <Controls:MetroWindow.Resources>
+        <Style BasedOn="{StaticResource MetroToggleButton}" x:Key="ToggleMenuBtn" 
+               TargetType="ToggleButton">
+            <Setter Property="Margin" Value="0 10 0 0" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="TextBlock.FontFamily" Value="Segoe UI Light" />
+            <Setter Property="TextBlock.FontSize" Value="15" />
+            <!--<Setter Property="Width" Value="100" />-->
+        </Style>
+        <Style BasedOn="{StaticResource MetroButton}" x:Key="UebersichtMenuBtn" 
+               TargetType="Button">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="TextBlock.FontFamily" Value="Segoe UI Light" />
+            <Setter Property="TextBlock.FontSize" Value="15" />
+            <!--<Setter Property="Width" Value="100" />-->
+        </Style>
+        <Style BasedOn="{StaticResource MetroButton}" x:Key="MenuBtn" 
+               TargetType="Button">
+            <Setter Property="Padding" Value="10" />
+            <!--<Setter Property="Width" Value="90" />-->
+            <Setter Property="TextBlock.FontFamily" Value="Segoe UI Light" />
+            <Setter Property="TextBlock.FontSize" Value="15" />
+        </Style>
+    </Controls:MetroWindow.Resources>
 
     <DockPanel>
-        <Menu DockPanel.Dock="Top" FontSize="18" Background="#FFD6C8A0">
-            <MenuItem Header="_Benutzer">
-                <MenuItem x:Name="LogOut" Header="_Ausloggen" Background="#FFD6C8A0" />
+        <!--Top Menu-->
+        <Menu x:Name="TopMenu" DockPanel.Dock="Top" FontSize="18" Background="#FFF7F7F7">
+            <MenuItem x:Name="TopMenuItem1" Header="_Benutzer" Background="#FFF7F7F7">
+                <MenuItem x:Name="LogOut" Header="_Ausloggen" Background="#FFF7F7F7" />
             </MenuItem>
         </Menu>
         <Grid>
@@ -18,20 +62,79 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel x:Name="Menu" Grid.Column="0" Margin="5 5 5 5"
-                        Visibility="{Binding IsMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
-                <Button x:Name="Handle" Content="Alle" Padding="10" />
-                <Button x:Name="MenuSelect" Content="R40 A" Padding="10"/>
-                <Button Content="Anlage" Padding="10"/>
-                <Button Content="Anlage" Padding="10"/>
-                <Button Content="Anlage" Padding="10"/>
-                <Button Content="Anlage" Padding="10"/>
-                <Button Content="Anlage" Padding="10"/>
-                <Button Content="Anlage" Padding="10"/>
-                <Button Content="Anlage" Padding="10"/>
+            
+            <!--Side Menu Stack Panel-->
+            <StackPanel x:Name="Menu" Grid.Column="0" Margin="30"
+                        Visibility="{Binding IsMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+               
+                <!--Übersicht Button-->
+                <Button x:Name="Handle" Content="Übersicht"
+                        Style="{StaticResource UebersichtMenuBtn}"/>
+                
+                <!--MFA 2 Menu Buttons-->
+                <ToggleButton x:Name="MenuBtn_MFA2" Content="NLA 480 - MFA 2"
+                              Style="{StaticResource ToggleMenuBtn}"/>
+                <StackPanel Visibility="{Binding ElementName=MenuBtn_MFA2, 
+                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                    FallbackValue=Visible}">
+                    <Button Style="{StaticResource MenuBtn}" Content="OP UG 10"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP UG 20"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 30" />
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 70_11"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 70_12"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 70_13"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 70_14"/>
+
+                </StackPanel>
+
+                <!--Audi B9 Menu Buttons-->
+                <ToggleButton x:Name="MenuBtn_B9" Content="NLA 570 - Audi B9"
+                              Style="{StaticResource ToggleMenuBtn}"/>
+                <StackPanel Visibility="{Binding ElementName=MenuBtn_B9, 
+                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                    FallbackValue=Visible}">
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 2WD"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 4WD"/>
+                </StackPanel>
+
+                <!--UKL VAT Menu Buttons-->
+                <ToggleButton x:Name="MenuBtn_VAT" Content="NLA 590 - UKL VAT"
+                              Style="{StaticResource ToggleMenuBtn}"/>
+                <StackPanel Visibility="{Binding ElementName=MenuBtn_VAT, 
+                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                    FallbackValue=Visible}">
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 10"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP 40"/>
+                </StackPanel>
+
+                <!--UKL 1 Menu Buttons-->
+                <ToggleButton x:Name="MenuBtn_UKL1" Content="NLA 592 - UKL 1"
+                              Style="{StaticResource ToggleMenuBtn}"/>
+                <StackPanel Visibility="{Binding ElementName=MenuBtn_UKL1, 
+                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                    FallbackValue=Visible}">
+                    <Button Style="{StaticResource MenuBtn}" Content="OP QL Links"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP QL Rechts"/>
+                </StackPanel>
+
+                <!--UKL 2 Menu Buttons-->
+                <ToggleButton x:Name="MenuBtn_UKL2" Content="NLA 592 - UKL 2"
+                              Style="{StaticResource ToggleMenuBtn}"/>
+                <StackPanel Visibility="{Binding ElementName=MenuBtn_UKL2, 
+                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                    FallbackValue=Visible}">
+                    <Button Style="{StaticResource MenuBtn}" x:Name="MenuSelect" Content="OP R40 A" />
+                    <Button Style="{StaticResource MenuBtn}" Content="OP R40 B"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP R40 C"/>
+                    <Button Style="{StaticResource MenuBtn}" Content="OP R40 D"/>
+                </StackPanel>
+                
             </StackPanel>
+            
+            <!--Changes Content Control-->
             <ContentControl x:Name="ActiveItem" Margin="5" Grid.Column="1" />
+        
         </Grid>
     </DockPanel>
 
-</Window>
+</Controls:MetroWindow>

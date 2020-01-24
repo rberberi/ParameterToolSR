@@ -17,13 +17,5 @@ namespace PTSRDesktopUI.Models
         public DateTime Aenderungsdatum { get; set; }
         public bool Validiert { get; set; }
         public DateTime Validierungsdatum { get; set; }
-
-        //public string FullInfo
-        //{
-        //    get
-        //    {
-        //        return $"{ Anlage } { Controller } { ParameterName }  { WertAlt } { WertNeu } { Aenderungsdatum } { Validiert } { Validierungsdatum }";
-        //    }
-        //}
     }
 }
