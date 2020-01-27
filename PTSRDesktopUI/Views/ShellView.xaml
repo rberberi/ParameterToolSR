@@ -5,10 +5,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PTSRDesktopUI.Views"
+        xmlns:cal="http://www.caliburnproject.org"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" FontSize="18" ShowIconOnTitleBar="True" ShowTitleBar="True"
         Title="Parameter Tool" Height="800" Width="800" 
-                      Icon="C:\WPF Projekte\ParameterToolSR\PTSRDesktopUI\Images\logo3.ico"
+                      Icon="C:\WPF Projekte\ParameterToolSR\PTSRDesktopUI\Images\logo4.ico"
                       WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Controls:MetroWindow.RightWindowCommands>
@@ -62,75 +63,77 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <!--Side Menu Stack Panel-->
-            <StackPanel x:Name="Menu" Grid.Column="0" Margin="30"
-                        Visibility="{Binding IsMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+
+            <ScrollViewer  Grid.Column="0" 
+                           Visibility="{Binding IsMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+                <!--Side Menu Stack Panel-->
+                <StackPanel x:Name="Menu" Margin="30">
                
-                <!--Übersicht Button-->
-                <Button x:Name="Handle" Content="Übersicht"
-                        Style="{StaticResource UebersichtMenuBtn}"/>
+                    <!--Übersicht Button-->
+                    <Button x:Name="Handle" Content="Übersicht"
+                            Style="{StaticResource UebersichtMenuBtn}"/>
                 
-                <!--MFA 2 Menu Buttons-->
-                <ToggleButton x:Name="MenuBtn_MFA2" Content="NLA 480 - MFA 2"
-                              Style="{StaticResource ToggleMenuBtn}"/>
-                <StackPanel Visibility="{Binding ElementName=MenuBtn_MFA2, 
-                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
-                    FallbackValue=Visible}">
-                    <Button Style="{StaticResource MenuBtn}" Content="OP UG 10"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP UG 20"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 30" />
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 70_11"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 70_12"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 70_13"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 70_14"/>
+                    <!--MFA 2 Menu Buttons-->
+                    <ToggleButton x:Name="MenuBtn_MFA2" Content="NLA 480 - MFA 2"
+                                  Style="{StaticResource ToggleMenuBtn}"/>
+                    <StackPanel Visibility="{Binding ElementName=MenuBtn_MFA2, 
+                        Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                        FallbackValue=Visible}">
+                        <Button Style="{StaticResource MenuBtn}" Content="OP UG 10"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP UG 20"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 30" />
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 70_11"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 70_12"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 70_13"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 70_14"/>
 
-                </StackPanel>
+                    </StackPanel>
 
-                <!--Audi B9 Menu Buttons-->
-                <ToggleButton x:Name="MenuBtn_B9" Content="NLA 570 - Audi B9"
-                              Style="{StaticResource ToggleMenuBtn}"/>
-                <StackPanel Visibility="{Binding ElementName=MenuBtn_B9, 
-                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
-                    FallbackValue=Visible}">
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 2WD"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 4WD"/>
-                </StackPanel>
+                    <!--Audi B9 Menu Buttons-->
+                    <ToggleButton x:Name="MenuBtn_B9" Content="NLA 570 - Audi B9"
+                                  Style="{StaticResource ToggleMenuBtn}"/>
+                    <StackPanel Visibility="{Binding ElementName=MenuBtn_B9, 
+                        Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                        FallbackValue=Visible}">
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 2WD"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 4WD"/>
+                    </StackPanel>
 
-                <!--UKL VAT Menu Buttons-->
-                <ToggleButton x:Name="MenuBtn_VAT" Content="NLA 590 - UKL VAT"
-                              Style="{StaticResource ToggleMenuBtn}"/>
-                <StackPanel Visibility="{Binding ElementName=MenuBtn_VAT, 
-                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
-                    FallbackValue=Visible}">
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 10"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP 40"/>
-                </StackPanel>
+                    <!--UKL VAT Menu Buttons-->
+                    <ToggleButton x:Name="MenuBtn_VAT" Content="NLA 590 - UKL VAT"
+                                  Style="{StaticResource ToggleMenuBtn}"/>
+                    <StackPanel Visibility="{Binding ElementName=MenuBtn_VAT, 
+                        Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                        FallbackValue=Visible}">
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 10"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP 40"/>
+                    </StackPanel>
 
-                <!--UKL 1 Menu Buttons-->
-                <ToggleButton x:Name="MenuBtn_UKL1" Content="NLA 592 - UKL 1"
-                              Style="{StaticResource ToggleMenuBtn}"/>
-                <StackPanel Visibility="{Binding ElementName=MenuBtn_UKL1, 
-                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
-                    FallbackValue=Visible}">
-                    <Button Style="{StaticResource MenuBtn}" Content="OP QL Links"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP QL Rechts"/>
-                </StackPanel>
+                    <!--UKL 1 Menu Buttons-->
+                    <ToggleButton x:Name="MenuBtn_UKL1" Content="NLA 592 - UKL 1"
+                                  Style="{StaticResource ToggleMenuBtn}"/>
+                    <StackPanel Visibility="{Binding ElementName=MenuBtn_UKL1, 
+                        Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                        FallbackValue=Visible}">
+                        <Button Style="{StaticResource MenuBtn}" Content="OP QL Links"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP QL Rechts"/>
+                    </StackPanel>
 
-                <!--UKL 2 Menu Buttons-->
-                <ToggleButton x:Name="MenuBtn_UKL2" Content="NLA 592 - UKL 2"
-                              Style="{StaticResource ToggleMenuBtn}"/>
-                <StackPanel Visibility="{Binding ElementName=MenuBtn_UKL2, 
-                    Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
-                    FallbackValue=Visible}">
-                    <Button Style="{StaticResource MenuBtn}" x:Name="MenuSelect" Content="OP R40 A" />
-                    <Button Style="{StaticResource MenuBtn}" Content="OP R40 B"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP R40 C"/>
-                    <Button Style="{StaticResource MenuBtn}" Content="OP R40 D"/>
-                </StackPanel>
+                    <!--UKL 2 Menu Buttons-->
+                    <ToggleButton x:Name="MenuBtn_UKL2" Content="NLA 592 - UKL 2"
+                                  Style="{StaticResource ToggleMenuBtn}"/>
+                    <StackPanel Visibility="{Binding ElementName=MenuBtn_UKL2, 
+                        Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
+                        FallbackValue=Visible}">
+                        <Button Style="{StaticResource MenuBtn}" Content="OP R40 A" 
+                                cal:Message.Attach="MenuSelect"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP R40 B"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP R40 C"/>
+                        <Button Style="{StaticResource MenuBtn}" Content="OP R40 D"/>
+                    </StackPanel>
                 
-            </StackPanel>
-            
+                </StackPanel>
+            </ScrollViewer>
             <!--Changes Content Control-->
             <ContentControl x:Name="ActiveItem" Margin="5" Grid.Column="1" />
         
