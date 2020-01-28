@@ -7,10 +7,12 @@
              xmlns:local="clr-namespace:PTSRDesktopUI.Views"
              mc:Ignorable="d" Background="Transparent" FontSize="24"
              d:DesignHeight="800" d:DesignWidth="800">
+    
+    <!--Main grid-->
     <Grid>
+        <!--Column and Row definitions-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <!--<ColumnDefinition Width="auto"/>-->
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -21,37 +23,32 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
+        <!--View Title-->
         <TextBlock Grid.Row="0" Grid.Column="1"  Margin="0 300 0 60"
                    HorizontalAlignment="Center" FontSize="50" FontFamily="Segoe UI Light" 
                    FontWeight="Bold">
             Einloggen
         </TextBlock>
 
-        <!-- Username Row -->
-        <!--<TextBlock Grid.Row="1" Grid.Column="1" Margin="0 0 0 15" 
-                   FontFamily="Segoe UI Light" FontWeight="Bold">
-            Benutzername:
-        </TextBlock>-->
+        <!--Username-->
         <TextBox x:Name="UserName" Grid.Row="1" Grid.Column="1" FontSize="24"
                  MinWidth="150" Margin="10 0 0 25" FontFamily="Segoe UI Light"
                  Controls:TextBoxHelper.ClearTextButton="True" 
                  Controls:TextBoxHelper.Watermark="Benutzername"/>
 
-        <!-- Password Row -->
-        <!--<TextBlock Grid.Row="2" Grid.Column="1" Margin="0 0 0 20"
-                   FontFamily="Segoe UI Light" FontWeight="Bold">
-            Passwort:
-        </TextBlock>-->
+        <!--Password-->
         <PasswordBox x:Name="Password" Grid.Row="2" Grid.Column="1" FontSize="24"
                      MinWidth="150" Margin="10 0 0 15" FontFamily="Segoe UI Light"
                      Controls:TextBoxHelper.ClearTextButton="True" 
                      Controls:TextBoxHelper.Watermark="Passwort"/>
 
-        <!-- Login Button Row-->
+        <!-- Login Button-->
         <Button x:Name="LogIn" Grid.Row="3" Grid.Column="1" IsDefault="True" 
                 HorizontalAlignment="Center" Padding="20 5" FontSize="22"
                 FontFamily="Segoe UI Light" FontWeight="Bold" Margin="70,30,71,0">
             Einloggen
         </Button>
+        
     </Grid>
 </UserControl>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PTSRDesktopUI.Views
 {
     /// <summary>
-    /// Interaktionslogik für TestView.xaml
+    /// Interaktionslogik für OverviewView.xaml
     /// </summary>
-    public partial class TestView : UserControl
+    public partial class OverviewView : UserControl
     {
-        public TestView()
+        public OverviewView()
         {
             InitializeComponent();
         }

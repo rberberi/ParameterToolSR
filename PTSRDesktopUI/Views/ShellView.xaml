@@ -12,6 +12,7 @@
                       Icon="C:\WPF Projekte\ParameterToolSR\PTSRDesktopUI\Images\logo4.ico"
                       WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
+    <!-- Theme Toggle Button -->
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <ToggleButton x:Name="ThemeToggleBtn" Checked="ThemeToggleBtn_Checked_1"
@@ -51,21 +52,28 @@
         </Style>
     </Controls:MetroWindow.Resources>
 
+    <!--The whole window is a dock panel-->
     <DockPanel>
         <!--Top Menu-->
         <Menu x:Name="TopMenu" DockPanel.Dock="Top" FontSize="18" Background="#FFF7F7F7">
-            <MenuItem x:Name="TopMenuItem1" Header="_Benutzer" Background="#FFF7F7F7">
-                <MenuItem x:Name="LogOut" Header="_Ausloggen" Background="#FFF7F7F7" />
+            <MenuItem x:Name="TopMenuItem1" Header="_Benutzer" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
+                <MenuItem x:Name="LogOut" Header="_Ausloggen" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
             </MenuItem>
         </Menu>
+        
+        <!--Main Grid-->
         <Grid>
+            <!--Column Definitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <!--Side menu is wrapped in a scroll viewer (will be changed)-->
             <ScrollViewer  Grid.Column="0" 
-                           Visibility="{Binding IsMenuVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+                           Visibility="{Binding IsSideMenuVisible, 
+                           Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+                
                 <!--Side Menu Stack Panel-->
                 <StackPanel x:Name="Menu" Margin="30">
                
@@ -75,65 +83,87 @@
                 
                     <!--MFA 2 Menu Buttons-->
                     <ToggleButton x:Name="MenuBtn_MFA2" Content="NLA 480 - MFA 2"
-                                  Style="{StaticResource ToggleMenuBtn}"/>
-                    <StackPanel Visibility="{Binding ElementName=MenuBtn_MFA2, 
+                                  Style="{StaticResource ToggleMenuBtn}"
+                                  Click="MenuBtn_MFA2_Click" cal:Message.Attach="FacilityMenuSelect"/>
+                    <StackPanel x:Name="Submenu_MFA2" Visibility="{Binding ElementName=MenuBtn_MFA2, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button Style="{StaticResource MenuBtn}" Content="OP UG 10"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP UG 20"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 30" />
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 70_11"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 70_12"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 70_13"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 70_14"/>
-
+                        <Button x:Name="Btn_UG10" Style="{StaticResource MenuBtn}" Content="OP UG 10"
+                                Click="Btn_UG10_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_UG20" Style="{StaticResource MenuBtn}" Content="OP UG 20"
+                                Click="Btn_UG20_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_OP30" Style="{StaticResource MenuBtn}" Content="OP 30" 
+                                Click="Btn_OP30_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_OP7011" Style="{StaticResource MenuBtn}" Content="OP 70_11"
+                                Click="Btn_OP7011_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_OP7012" Style="{StaticResource MenuBtn}" Content="OP 70_12"
+                                Click="Btn_OP7012_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_OP7013" Style="{StaticResource MenuBtn}" Content="OP 70_13"
+                                Click="Btn_OP7013_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_OP7014" Style="{StaticResource MenuBtn}" Content="OP 70_14"
+                                Click="Btn_OP7014_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
                     <!--Audi B9 Menu Buttons-->
                     <ToggleButton x:Name="MenuBtn_B9" Content="NLA 570 - Audi B9"
-                                  Style="{StaticResource ToggleMenuBtn}"/>
-                    <StackPanel Visibility="{Binding ElementName=MenuBtn_B9, 
+                                  Style="{StaticResource ToggleMenuBtn}"
+                                  Click="MenuBtn_B9_Click" cal:Message.Attach="FacilityMenuSelect"/>
+                    <StackPanel x:Name="Submenu_AudiB9" Visibility="{Binding ElementName=MenuBtn_B9, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 2WD"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 4WD"/>
+                        <Button x:Name="Btn_2WD" Style="{StaticResource MenuBtn}" Content="OP 2WD"
+                                Click="Btn_2WD_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_4WD" Style="{StaticResource MenuBtn}" Content="OP 4WD"
+                                Click="Btn_4WD_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
                     <!--UKL VAT Menu Buttons-->
                     <ToggleButton x:Name="MenuBtn_VAT" Content="NLA 590 - UKL VAT"
-                                  Style="{StaticResource ToggleMenuBtn}"/>
-                    <StackPanel Visibility="{Binding ElementName=MenuBtn_VAT, 
+                                  Style="{StaticResource ToggleMenuBtn}"
+                                  Click="MenuBtn_VAT_Click" cal:Message.Attach="FacilityMenuSelect"/>
+                    <StackPanel x:Name="Submenu_UKLVAT" Visibility="{Binding ElementName=MenuBtn_VAT, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 10"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP 40"/>
+                        <Button x:Name="Btn_OP10" Style="{StaticResource MenuBtn}" Content="OP 10"
+                                Click="Btn_OP10_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_OP40" Style="{StaticResource MenuBtn}" Content="OP 40"
+                                Click="Btn_OP40_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
                     <!--UKL 1 Menu Buttons-->
                     <ToggleButton x:Name="MenuBtn_UKL1" Content="NLA 592 - UKL 1"
-                                  Style="{StaticResource ToggleMenuBtn}"/>
-                    <StackPanel Visibility="{Binding ElementName=MenuBtn_UKL1, 
+                                  Style="{StaticResource ToggleMenuBtn}"
+                                  Click="MenuBtn_UKL1_Click" cal:Message.Attach="FacilityMenuSelect"/>
+                    <StackPanel x:Name="Submenu_UKL1" Visibility="{Binding ElementName=MenuBtn_UKL1, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button Style="{StaticResource MenuBtn}" Content="OP QL Links"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP QL Rechts"/>
+                        <Button x:Name="Btn_QLLinks" Style="{StaticResource MenuBtn}" Content="OP QL Links"
+                                Click="Btn_QLLinks_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_QLRechts" Style="{StaticResource MenuBtn}" Content="OP QL Rechts"
+                                Click="Btn_QLRechts_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
                     <!--UKL 2 Menu Buttons-->
                     <ToggleButton x:Name="MenuBtn_UKL2" Content="NLA 592 - UKL 2"
-                                  Style="{StaticResource ToggleMenuBtn}"/>
-                    <StackPanel Visibility="{Binding ElementName=MenuBtn_UKL2, 
+                                  Style="{StaticResource ToggleMenuBtn}"
+                                  Click="MenuBtn_UKL2_Click" cal:Message.Attach="FacilityMenuSelect"/>
+                    <StackPanel x:Name="Submenu_UKL2" Visibility="{Binding ElementName=MenuBtn_UKL2, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button Style="{StaticResource MenuBtn}" Content="OP R40 A" 
-                                cal:Message.Attach="MenuSelect"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP R40 B"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP R40 C"/>
-                        <Button Style="{StaticResource MenuBtn}" Content="OP R40 D"/>
+                        <Button x:Name="Btn_R40A" Style="{StaticResource MenuBtn}" Content="OP R40 A" 
+                                Click="Btn_R40A_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_R40B" Style="{StaticResource MenuBtn}" Content="OP R40 B"
+                                Click="Btn_R40B_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_R40C" Style="{StaticResource MenuBtn}" Content="OP R40 C"
+                                Click="Btn_R40C_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
+                        <Button x:Name="Btn_R40D" Style="{StaticResource MenuBtn}" Content="OP R40 D"
+                                Click="Btn_R40D_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
                 
                 </StackPanel>
+                
             </ScrollViewer>
+            
             <!--Changes Content Control-->
             <ContentControl x:Name="ActiveItem" Margin="5" Grid.Column="1" />
         

@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="PTSRDesktopUI.Views.OverviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PTSRDesktopUI.Views"
+             mc:Ignorable="d" FontSize="24"
+             d:DesignHeight="650" d:DesignWidth="800">
+    
+    <!--Style Resources-->
+    <UserControl.Resources>
+        <Style x:Key="DataGridCellCentered" TargetType="DataGridCell">
+            <Setter Property="TextBlock.TextAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+
+    <!--Main Grid-->
+    <Grid>
+        <!--Row Definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <!--View Title label-->
+        <TextBlock Grid.Row="0" HorizontalAlignment="Center" FontFamily="Segoe UI Light" 
+                   FontSize="35" Margin="0 0 0 10">
+            Übersicht
+        </TextBlock>
+        
+        <!--Datagrid Table-->
+        <DataGrid Grid.Row="1" x:Name="Changes" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Anlage" Binding="{Binding Path=Anlage}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Controller" Binding="{Binding Path=Controller}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Parameter/Toleranz Name" Binding="{Binding Path=ParameterName}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Altes Wert" Binding="{Binding Path=WertAlt}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Neues Wert" Binding="{Binding Path=WertNeu}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Änderungsdatum" Binding="{Binding Path=Aenderungsdatum}"/>
+                <DataGridCheckBoxColumn Header="Ist Validiert" ElementStyle="{DynamicResource MetroDataGridCheckBox}"       
+                                    EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                    Binding="{Binding Path=Validiert}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Validierungsdatum" Binding="{Binding Path=Validierungsdatum}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+            
+    </Grid>
+</UserControl>

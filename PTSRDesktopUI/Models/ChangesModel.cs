@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PTSRDesktopUI.Models
 {
+    //public class for all changes attributes
     public class ChangesModel
     {
         public int ID { get; set; }

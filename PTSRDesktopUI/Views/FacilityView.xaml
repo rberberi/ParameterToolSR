@@ -1,20 +1,34 @@
-﻿<UserControl x:Class="PTSRDesktopUI.Views.TestView"
+﻿<UserControl x:Class="PTSRDesktopUI.Views.FacilityView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PTSRDesktopUI.Views"
-             mc:Ignorable="d" Background="White" FontSize="24"
+             mc:Ignorable="d" FontSize="24"
              d:DesignHeight="650" d:DesignWidth="800">
+
+    <!--Style Resources-->
     <UserControl.Resources>
         <Style x:Key="DataGridCellCentered" TargetType="DataGridCell">
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <DataGrid x:Name="Changes" CanUserAddRows="False" AutoGenerateColumns="False">
 
+    <!--Main Grid-->
+    <Grid>
+        <!--Row Definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!--View Title label-->
+        <Label x:Name="ViewTitle_Lbl" Grid.Row="0" HorizontalAlignment="Center" FontFamily="Segoe UI Light" 
+                   FontSize="35" Margin="0 0 0 10" />
+
+        <!--Datagrid Table-->
+        <DataGrid Grid.Row="1" x:Name="ChangesFacility" CanUserAddRows="False" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Anlage" Binding="{Binding Path=Anlage}"/>
@@ -35,6 +49,6 @@
                                     Header="Validierungsdatum" Binding="{Binding Path=Validierungsdatum}"/>
             </DataGrid.Columns>
         </DataGrid>
-            
+        
     </Grid>
 </UserControl>

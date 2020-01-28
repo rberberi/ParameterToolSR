@@ -9,16 +9,18 @@ using System.Threading.Tasks;
 
 namespace PTSRDesktopUI.ViewModels
 {
-    public class TestViewModel : Screen
+    public class OverviewViewModel : Screen
     {
-        //public List<ChangesModel> changes = new List<ChangesModel>();
+
+        //Create new Bindable Collection variable of type ChangesModel
         public BindableCollection<ChangesModel> Changes { get; set; }
-        public string anlage = "R40_A";
 
-
-        public TestViewModel()
+        public OverviewViewModel()
         {
+            //Create connection to dataAccess class
             DataAccess db = new DataAccess();
+
+            //get the changes from dataAccess function and store them as a bindabla collection in Changes
             Changes = new BindableCollection<ChangesModel>(db.GetChanges());
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PTSRDesktopUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,16 @@ using System.Windows.Shapes;
 namespace PTSRDesktopUI.Views
 {
     /// <summary>
-    /// Interaktionslogik für TestControllerView.xaml
+    /// Interaktionslogik für FacilityView.xaml
     /// </summary>
-    public partial class TestControllerView : UserControl
+    public partial class FacilityView : UserControl
     {
-        public TestControllerView()
+        public FacilityView()
         {
             InitializeComponent();
+
+            //Set the title lable to the selected facility name
+            ViewTitle_Lbl.Content = SelectedFacility.facilityName;
         }
     }
 }
