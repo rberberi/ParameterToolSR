@@ -85,7 +85,8 @@ namespace PTSRDesktopUI.ViewModels
                 int result = Convert.ToInt16(tempValue); 
                 //If result is 1 then login, else give login error message
                 if (result == 1)
-                {            
+                {
+                    LoggedUser.loggedUser = UserName;
                     _events.PublishOnUIThread(new LogOnEvent());
                 }
                 else 

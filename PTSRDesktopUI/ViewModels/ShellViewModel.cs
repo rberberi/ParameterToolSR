@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace PTSRDesktopUI.ViewModels
 {
@@ -16,16 +18,16 @@ namespace PTSRDesktopUI.ViewModels
     {
         //Variables
         private IEventAggregator _events;
-        private OverviewViewModel _testVM;
+        private OverviewViewModel _overviewVM;
         private SimpleContainer _container;
         public int showMenu = 0; //1-Show Menu, 0-HideMenu
 
         //Constructor
-        public ShellViewModel(IEventAggregator events, OverviewViewModel testVM,
+        public ShellViewModel(IEventAggregator events, OverviewViewModel overviewVM,
             SimpleContainer container, LoginViewModel loginVM)
         {
             _events = events;
-            _testVM = testVM;
+            _overviewVM = overviewVM;
             _container = container;
 
             _events.Subscribe(this);
@@ -33,6 +35,8 @@ namespace PTSRDesktopUI.ViewModels
             ActivateItem(_container.GetInstance<LoginViewModel>());
 
         }
+
+
 
         //Is Side Menu Visible Property
         public bool IsSideMenuVisible
@@ -68,7 +72,7 @@ namespace PTSRDesktopUI.ViewModels
         {
             showMenu = 1;
             NotifyOfPropertyChange(() => IsSideMenuVisible);
-            ActivateItem(_testVM);
+            ActivateItem(_overviewVM);
         }
 
         //LogOut function

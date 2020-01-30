@@ -17,11 +17,29 @@ namespace PTSRDesktopUI.ViewModels
 
         public OverviewViewModel()
         {
+            //NotifyOfPropertyChange(() => IsValidateButtonVisible);
+
             //Create connection to dataAccess class
             DataAccess db = new DataAccess();
 
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
-            Changes = new BindableCollection<ChangesModel>(db.GetChanges());
+            Changes = new BindableCollection<ChangesModel>(db.GetChanges());      
         }
+
+        //Is Validate Button Visible Property
+        //public bool IsValidateButtonVisible
+        //{
+        //    get
+        //    {
+        //        bool output = false;
+
+        //        if (LoggedUser.loggedUser == "admin")
+        //        {
+        //            output = true;
+        //        }
+        //        return output;
+        //    }
+        //}
+
     }
 }

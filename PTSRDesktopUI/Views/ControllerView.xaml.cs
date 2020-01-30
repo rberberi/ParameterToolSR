@@ -27,6 +27,9 @@ namespace PTSRDesktopUI.Views
 
             //Set the title lable to the selected controller name
             ViewTitle_Lbl.Content = SelectedController.controllerName;
+
+            //Sets the login user text block to the global variable for logged in user
+            loggedUser_textblock.Text = LoggedUser.loggedUser;
         }
     }
 }

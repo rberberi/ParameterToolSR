@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PTSRDesktopUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace PTSRDesktopUI.Views
         public OverviewView()
         {
             InitializeComponent();
+
+            //Sets the login user text block to the global variable for logged in user
+            loggedUser_textblock.Text = LoggedUser.loggedUser;
         }
     }
 }

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PTSRDesktopUI</RootNamespace>
-    <AssemblyName>ParameterToolSR</AssemblyName>
+    <AssemblyName>Parameter Inspection Tool</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -27,9 +27,9 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <MinimumRequiredVersion>1.0.0.6</MinimumRequiredVersion>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <MinimumRequiredVersion>1.0.1.0</MinimumRequiredVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -66,7 +66,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo4.ico</ApplicationIcon>
+    <ApplicationIcon>applogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -185,8 +185,10 @@
     <Compile Include="EventModels\LogOnEvent.cs" />
     <Compile Include="Helpers\DataAccess.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
+    <Compile Include="Helpers\MultiValueConverter.cs" />
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
     <Compile Include="Models\ChangesModel.cs" />
+    <Compile Include="Models\LoggedUser.cs" />
     <Compile Include="Models\SelectedController.cs" />
     <Compile Include="Models\SelectedFacility.cs" />
     <Compile Include="ViewModels\FacilityViewModel.cs" />
@@ -289,6 +291,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo_final.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo_final.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="applogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

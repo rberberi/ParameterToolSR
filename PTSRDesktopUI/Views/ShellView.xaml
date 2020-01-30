@@ -5,11 +5,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PTSRDesktopUI.Views"
+        xmlns:c="clr-namespace:PTSRDesktopUI.Helpers"
         xmlns:cal="http://www.caliburnproject.org"
+        
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" FontSize="18" ShowIconOnTitleBar="True" ShowTitleBar="True"
-        Title="Parameter Tool" Height="800" Width="800" 
-                      Icon="C:\WPF Projekte\ParameterToolSR\PTSRDesktopUI\Images\logo4.ico"
+        Title="Parameter Inspection Tool" Height="800" Width="800" 
+                      Icon="\\FILESRV1.de.gestamp.com\Services\Produktion_Prozessoptimierung\Technische_Dokumentation\Bildverarbeitung\SmartRay\Software\ParameterToolSR\applogo.ico"
                       WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <!-- Theme Toggle Button -->
@@ -28,6 +30,7 @@
 
     <!--Resource Styles-->
     <Controls:MetroWindow.Resources>
+        <!--<c:MultiValueConverter x:Key="MultiValueConverter"/>-->
         <Style BasedOn="{StaticResource MetroToggleButton}" x:Key="ToggleMenuBtn" 
                TargetType="ToggleButton">
             <Setter Property="Margin" Value="0 10 0 0" />
@@ -83,11 +86,17 @@
                 
                     <!--MFA 2 Menu Buttons-->
                     <ToggleButton x:Name="MenuBtn_MFA2" Content="NLA 480 - MFA 2"
-                                  Style="{StaticResource ToggleMenuBtn}"
-                                  Click="MenuBtn_MFA2_Click" cal:Message.Attach="FacilityMenuSelect"/>
+                                  Style="{StaticResource ToggleMenuBtn}" Checked="MenuBtn_MFA2_Checked"
+                                  Click="MenuBtn_MFA2_Click_1" cal:Message.Attach="FacilityMenuSelect"/>
                     <StackPanel x:Name="Submenu_MFA2" Visibility="{Binding ElementName=MenuBtn_MFA2, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
+                        <!--<StackPanel.Visibility>
+                            <MultiBinding Converter="{StaticResource MultiValueConverter}">
+                                <Binding ElementName="MenuBtn_MFA2" Path="IsChecked" Converter="{StaticResource BooleanToVisibilityConverter}"/>
+                                <Binding ElementName="MenuBtn_B9" Path="IsChecked" Converter="{StaticResource BooleanToVisibilityConverter}"/>
+                            </MultiBinding>
+                        </StackPanel.Visibility>-->
                         <Button x:Name="Btn_UG10" Style="{StaticResource MenuBtn}" Content="OP UG 10"
                                 Click="Btn_UG10_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                         <Button x:Name="Btn_UG20" Style="{StaticResource MenuBtn}" Content="OP UG 20"
