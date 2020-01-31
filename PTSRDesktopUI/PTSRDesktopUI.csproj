@@ -185,7 +185,6 @@
     <Compile Include="EventModels\LogOnEvent.cs" />
     <Compile Include="Helpers\DataAccess.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
-    <Compile Include="Helpers\MultiValueConverter.cs" />
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
     <Compile Include="Models\ChangesModel.cs" />
     <Compile Include="Models\LoggedUser.cs" />
