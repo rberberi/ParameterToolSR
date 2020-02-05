@@ -26,7 +26,7 @@ namespace PTSRDesktopUI.Views
             InitializeComponent();
 
             //Sets the login user text block to the global variable for logged in user
-            loggedUser_textblock.Text = LoggedUser.loggedUser;
+            loggedUser_textblock.Text = LoggedUser.loggedUser;    
         }
     }
 }

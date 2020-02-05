@@ -13,6 +13,7 @@ namespace PTSRDesktopUI.Helpers
     class DataAccess
     {
 
+        #region Get User
         //Function to get the login data from database using stored procedures
         public string getUser(string userName, string password)
         {
@@ -31,18 +32,74 @@ namespace PTSRDesktopUI.Helpers
                 return value;
             }
         }
+        #endregion
 
+        #region Overview Changes
         //Function to get all changes from database using stored procedures
-        public List<ChangesModel> GetChanges()
+        public List<ChangesModel> GetChangesOverview()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
             {
-                var output = connection.Query<ChangesModel>("dbo.getChanges").ToList();
+                var output = connection.Query<ChangesModel>("dbo.getChangesOverview").ToList();
                 return output;
             }
         }
 
-        //Function to get changes based on controller from database using stored procedures
+        //Function to get validated changes from database using stored procedures
+        public List<ChangesModel> GetValidatedChangesOverview()
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var output = connection.Query<ChangesModel>("dbo.getValidatedChangesOverview").ToList();
+                return output;
+            }
+        }
+
+        //Function to get not validated changes from database using stored procedures
+        public List<ChangesModel> GetNotValidatedChangesOverview()
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var output = connection.Query<ChangesModel>("dbo.getNotValidatedChangesOverview").ToList();
+                return output;
+            }
+        }
+        #endregion
+
+        #region Facility Changes
+        //Function to get all changes based on facility from database using stored procedures
+        public List<ChangesModel> GetChangesFacility(string facility)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var output = connection.Query<ChangesModel>("dbo.getChangesFacility @Anlage", new { Anlage = facility }).ToList();
+                return output;
+            }
+        }
+
+        //Function to get validated changes based on facility from database using stored procedures
+        public List<ChangesModel> GetValidatedChangesFacility(string facility)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var output = connection.Query<ChangesModel>("dbo.getValidatedChangesFacility @Anlage", new { Anlage = facility }).ToList();
+                return output;
+            }
+        }
+
+        //Function to get not validated changes based on facility from database using stored procedures
+        public List<ChangesModel> GetNotValidatedChangesFacility(string facility)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var output = connection.Query<ChangesModel>("dbo.getNotValidatedChangesFacility @Anlage", new { Anlage = facility }).ToList();
+                return output;
+            }
+        }
+        #endregion
+
+        #region Controller Changes
+        //Function to get all changes based on controller from database using stored procedures
         public List<ChangesModel> GetChangesController(string controller)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
@@ -52,15 +109,34 @@ namespace PTSRDesktopUI.Helpers
             }
         }
 
-        //Function to get changes based on facility from database using stored procedures
-        public List<ChangesModel> GetChangesFacility(string facility)
+        //Function to get validated changes based on controller from database using stored procedures
+        public List<ChangesModel> GetValidatedChangesController(string controller)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
             {
-                var output = connection.Query<ChangesModel>("dbo.getChangesFacility @Anlage", new { Anlage = facility }).ToList();
+                var output = connection.Query<ChangesModel>("dbo.getValidatedChangesController @Controller", new { Controller = controller }).ToList();
                 return output;
             }
         }
+
+        //Function to get not validated changes based on controller from database using stored procedures
+        public List<ChangesModel> GetNotValidatedChangesController(string controller)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var output = connection.Query<ChangesModel>("dbo.getNotValidatedChangesController @Controller", new { Controller = controller }).ToList();
+                return output;
+            }
+        }
+        #endregion
+
+        //public void CheckValidate(int id)
+        //{
+        //    using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+        //    {
+        //        connection.Execute("dbo.checkValidate @ID", param: new {ID = id});
+        //    }
+        //}
 
     }
 }

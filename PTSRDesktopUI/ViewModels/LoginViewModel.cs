@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using MahApps.Metro.Controls;
 using PTSRDesktopUI.EventModels;
 using PTSRDesktopUI.Helpers;
 using PTSRDesktopUI.Models;

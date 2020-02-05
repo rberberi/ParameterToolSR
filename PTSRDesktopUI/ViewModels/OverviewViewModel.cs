@@ -1,11 +1,6 @@
 ﻿using Caliburn.Micro;
 using PTSRDesktopUI.Helpers;
 using PTSRDesktopUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PTSRDesktopUI.ViewModels
 {
@@ -14,32 +9,53 @@ namespace PTSRDesktopUI.ViewModels
 
         //Create new Bindable Collection variable of type ChangesModel
         public BindableCollection<ChangesModel> Changes { get; set; }
+        
 
         public OverviewViewModel()
         {
-            //NotifyOfPropertyChange(() => IsValidateButtonVisible);
-
             //Create connection to dataAccess class
             DataAccess db = new DataAccess();
 
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
-            Changes = new BindableCollection<ChangesModel>(db.GetChanges());      
+            Changes = new BindableCollection<ChangesModel>(db.GetChangesOverview());
+
+            //Notify Changes for changes
+            NotifyOfPropertyChange(() => Changes);
+
         }
 
-        //Is Validate Button Visible Property
-        //public bool IsValidateButtonVisible
-        //{
-        //    get
-        //    {
-        //        bool output = false;
+        //Function for ComboBox item to display validated changes
+        public void ValidatedChanges()
+        {
+            DataAccess db = new DataAccess();
 
-        //        if (LoggedUser.loggedUser == "admin")
-        //        {
-        //            output = true;
-        //        }
-        //        return output;
-        //    }
-        //}
+            Changes = new BindableCollection<ChangesModel>(db.GetValidatedChangesOverview());
+            NotifyOfPropertyChange(() => Changes);
+        }
+
+        //Function for ComboBox item to display not validated changes
+        public void NotValidatedChanges()
+        {
+            DataAccess db = new DataAccess();
+
+            Changes = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesOverview());
+            NotifyOfPropertyChange(() => Changes);
+        }
+
+        //Function for ComboBox item to display all changes
+        public void AllChanges()
+        {
+            DataAccess db = new DataAccess();
+
+            Changes = new BindableCollection<ChangesModel>(db.GetChangesOverview());
+            NotifyOfPropertyChange(() => Changes);
+        }
+
+        //Validate_Btn click event
+        public void Validate()
+        {
+           //Some Code        
+        }
 
     }
 }

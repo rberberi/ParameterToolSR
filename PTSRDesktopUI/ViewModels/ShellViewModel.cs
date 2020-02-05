@@ -18,16 +18,14 @@ namespace PTSRDesktopUI.ViewModels
     {
         //Variables
         private IEventAggregator _events;
-        private OverviewViewModel _overviewVM;
         private SimpleContainer _container;
         public int showMenu = 0; //1-Show Menu, 0-HideMenu
 
         //Constructor
-        public ShellViewModel(IEventAggregator events, OverviewViewModel overviewVM,
+        public ShellViewModel(IEventAggregator events,
             SimpleContainer container, LoginViewModel loginVM)
         {
             _events = events;
-            _overviewVM = overviewVM;
             _container = container;
 
             _events.Subscribe(this);
@@ -35,8 +33,6 @@ namespace PTSRDesktopUI.ViewModels
             ActivateItem(_container.GetInstance<LoginViewModel>());
 
         }
-
-
 
         //Is Side Menu Visible Property
         public bool IsSideMenuVisible
@@ -67,12 +63,13 @@ namespace PTSRDesktopUI.ViewModels
             ActivateItem(facilityVM);
         }
 
-        //LogIn function
+        //LogIn and Overview function
         public void Handle(LogOnEvent message)
         {
             showMenu = 1;
             NotifyOfPropertyChange(() => IsSideMenuVisible);
-            ActivateItem(_overviewVM);
+            OverviewViewModel overviewVM = new OverviewViewModel();
+            ActivateItem(overviewVM);
         }
 
         //LogOut function

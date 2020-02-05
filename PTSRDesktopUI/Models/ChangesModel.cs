@@ -17,6 +17,6 @@ namespace PTSRDesktopUI.Models
         public string WertNeu { get; set; }
         public DateTime Aenderungsdatum { get; set; }
         public bool Validiert { get; set; }
-        public DateTime Validierungsdatum { get; set; }
+        public DateTime? Validierungsdatum { get; set; }
     }
 }
