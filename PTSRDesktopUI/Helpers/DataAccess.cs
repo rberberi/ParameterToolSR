@@ -130,13 +130,14 @@ namespace PTSRDesktopUI.Helpers
         }
         #endregion
 
-        //public void CheckValidate(int id)
-        //{
-        //    using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
-        //    {
-        //        connection.Execute("dbo.checkValidate @ID", param: new {ID = id});
-        //    }
-        //}
-
+        public void CheckValidate(ChangesModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var parameters = new { validiert = model.Validiert, validierungsdatum = model.Validierungsdatum, validiertvon=model.ValidiertVon, id = model.ID };
+                var sql = "UPDATE paramChanges SET Validiert=@validiert, Validierungsdatum = @validierungsdatum, ValidiertVon=@validiertvon FROM paramChanges WHERE ID = @id";
+                connection.Execute(sql, parameters);
+            }
+        }
     }
 }

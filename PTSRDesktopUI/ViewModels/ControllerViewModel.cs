@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
 using PTSRDesktopUI.Helpers;
 using PTSRDesktopUI.Models;
+using System;
+using System.Windows;
 
 namespace PTSRDesktopUI.ViewModels
 {
@@ -10,11 +12,11 @@ namespace PTSRDesktopUI.ViewModels
         //Create new Bindable Collection variable of type ChangesModel
         public BindableCollection<ChangesModel> ChangesController { get; set; }
 
+        //Create connection to dataAccess class
+        DataAccess db = new DataAccess();
+
         public ControllerViewModel()
         {
-            //Create connection to dataAccess class
-            DataAccess db = new DataAccess();
-
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
             //Use the global variable controllerName to call data from database
             ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
@@ -26,8 +28,6 @@ namespace PTSRDesktopUI.ViewModels
         //Function for ComboBox item to display validated changes
         public void ValidatedChanges()
         {
-            DataAccess db = new DataAccess();
-
             ChangesController = new BindableCollection<ChangesModel>(db.GetValidatedChangesController(SelectedController.controllerName));
             NotifyOfPropertyChange(() => ChangesController);
         }
@@ -35,8 +35,6 @@ namespace PTSRDesktopUI.ViewModels
         //Function for ComboBox item to display not validated changes
         public void NotValidatedChanges()
         {
-            DataAccess db = new DataAccess();
-
             ChangesController = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesController(SelectedController.controllerName));
             NotifyOfPropertyChange(() => ChangesController);
         }
@@ -44,10 +42,18 @@ namespace PTSRDesktopUI.ViewModels
         //Function for ComboBox item to display all changes
         public void AllChanges()
         {
-            DataAccess db = new DataAccess();
-
             ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
             NotifyOfPropertyChange(() => ChangesController);
+        }
+
+        //Validate_Btn click event
+        public void Validate(ChangesModel model)
+        {
+            model.Validiert = true;
+            model.Validierungsdatum = DateTime.Now;
+            model.ValidiertVon = LoggedUser.loggedUser;
+            db.CheckValidate(model);
+            MessageBox.Show("Validierung gespeichert.", "Erfolg!");
         }
     }
 }
