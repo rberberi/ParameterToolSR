@@ -39,6 +39,9 @@ namespace PTSRDesktopUI.Models
             set { _validiertVon = value; NotifyPropertyChanged(); }
         }
 
+        public string Naht { get; set; }
+        public string Segment { get; set; }
+        public string ParameterPfad { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

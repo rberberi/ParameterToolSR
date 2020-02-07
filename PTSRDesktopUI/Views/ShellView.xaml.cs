@@ -172,5 +172,9 @@ namespace PTSRDesktopUI.Views
 
         #endregion
 
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            Handle.IsChecked = true;
+        }
     }
 }

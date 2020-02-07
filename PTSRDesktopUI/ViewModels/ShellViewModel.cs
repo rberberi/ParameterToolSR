@@ -63,6 +63,18 @@ namespace PTSRDesktopUI.ViewModels
             ActivateItem(facilityVM);
         }
 
+        public void HideMenu()
+        {
+            showMenu = 0;
+            NotifyOfPropertyChange(() => IsSideMenuVisible);
+        }
+
+        public void ShowMenu()
+        {
+            showMenu = 1;
+            NotifyOfPropertyChange(() => IsSideMenuVisible);
+        }
+
         //LogIn and Overview function
         public void Handle(LogOnEvent message)
         {

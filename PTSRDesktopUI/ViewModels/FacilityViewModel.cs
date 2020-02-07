@@ -55,7 +55,7 @@ namespace PTSRDesktopUI.ViewModels
             model.Validierungsdatum = DateTime.Now;
             model.ValidiertVon = LoggedUser.loggedUser;
             db.CheckValidate(model);
-            MessageBox.Show("Validierung gespeichert.", "Erfolg!");
+            MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
     }

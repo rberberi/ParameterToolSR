@@ -59,8 +59,14 @@
     <DockPanel>
         <!--Top Menu-->
         <Menu x:Name="TopMenu" DockPanel.Dock="Top" FontSize="18" Background="#FFF7F7F7">
+            <MenuItem x:Name="TopMenuItem0" Header="_Ansicht" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
+                <MenuItem x:Name="MenuItem0" Header="_Menü" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
+                    <MenuItem x:Name="HideMenu" Header="_Ausblenden" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
+                    <MenuItem x:Name="ShowMenu" Header="_Einblenden" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
+                </MenuItem>
+            </MenuItem>
             <MenuItem x:Name="TopMenuItem1" Header="_Benutzer" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
-                <MenuItem x:Name="LogOut" Header="_Ausloggen" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
+                <MenuItem x:Name="LogOut" Header="_Ausloggen" Click="LogOut_Click" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
             </MenuItem>
         </Menu>
         
@@ -72,6 +78,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+            <TextBlock Grid.Column="0" VerticalAlignment="Bottom"  FontFamily="Segoe UI Light" Foreground="Gray"> 
+                Version 1.0.2.0
+            </TextBlock>
             <!--Side Menu Stack Panel-->
                 <StackPanel x:Name="Menu" Grid.Column="0" Margin="30"
                            Visibility="{Binding IsSideMenuVisible, 

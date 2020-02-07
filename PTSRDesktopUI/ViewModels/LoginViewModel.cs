@@ -92,7 +92,7 @@ namespace PTSRDesktopUI.ViewModels
                 }
                 else 
                 {
-                    MessageBox.Show("Anmeldedaten sind falsch oder Benutzer existiert nicht!","Fehler");
+                    MessageBox.Show("Anmeldedaten sind falsch oder Benutzer existiert nicht!","Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
             }

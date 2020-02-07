@@ -1,13 +1,16 @@
 ﻿using Caliburn.Micro;
 using PTSRDesktopUI.Helpers;
 using PTSRDesktopUI.Models;
+using PTSRDesktopUI.Views;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PTSRDesktopUI.ViewModels
 {
-    public class OverviewViewModel : Screen
+    public class OverviewViewModel : Conductor<object>
     {
+        private readonly IWindowManager manager = new WindowManager();
 
         //Create new Bindable Collection variable of type ChangesModel
         public BindableCollection<ChangesModel> Changes { get; set; }
@@ -47,6 +50,20 @@ namespace PTSRDesktopUI.ViewModels
             NotifyOfPropertyChange(() => Changes);
         }
 
+        public void ShowPath(ChangesModel model)
+        {
+            //PopupWindowViewModel popup = new PopupWindowViewModel(model);
+            //var popup = new PopupWindowViewModel(model);
+            //ActivateItem(popup);
+            //window.ShowDialog(popup);
+            ////or
+            ////window.ShowWindow(model); //For non-modal
+            //bool CloseItemAfterDeactivating = true;
+            //DeactivateItem(popup, CloseItemAfterDeactivating);
+            manager.ShowWindow(new PopupWindowViewModel(model), null, null);
+            
+        }
+
         //Validate_Btn click event
         public void Validate(ChangesModel model)
         {
@@ -54,7 +71,7 @@ namespace PTSRDesktopUI.ViewModels
             model.Validierungsdatum = DateTime.Now;
             model.ValidiertVon = LoggedUser.loggedUser;
             db.CheckValidate(model);
-            MessageBox.Show("Validierung gespeichert.","Erfolg!");
+            MessageBox.Show("Validierung gespeichert.","Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
     }
