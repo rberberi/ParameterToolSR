@@ -12,6 +12,10 @@ namespace PTSRDesktopUI.ViewModels
 {
     class FacilityViewModel : Screen
     {
+        private readonly IWindowManager manager = new WindowManager();
+        private string _path;
+        private int _id;
+
         //Create new Bindable Collection variable of type ChangesModel
         public BindableCollection<ChangesModel> ChangesFacility { get; set; }
 
@@ -58,5 +62,35 @@ namespace PTSRDesktopUI.ViewModels
             MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        //Show parameter path
+        public void ShowPath(ChangesModel model)
+        {
+            _path = model.ParameterPfad;
+            _id = model.ID;
+            NotifyOfPropertyChange(() => Path);
+            NotifyOfPropertyChange(() => ID);
+        }
+
+        //Property for change ID
+        public int ID
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                NotifyOfPropertyChange(() => ID);
+            }
+        }
+
+        //Property for parameter path
+        public string Path
+        {
+            get { return _path; }
+            set
+            {
+                _path = value;
+                NotifyOfPropertyChange(() => Path);
+            }
+        } 
     }
 }

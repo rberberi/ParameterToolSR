@@ -31,5 +31,18 @@ namespace PTSRDesktopUI.Views
             //Sets the login user text block to the global variable for logged in user
             loggedUser_textblock.Text = LoggedUser.loggedUser;
         }
+
+        //Open Popup when clicking info button
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MyPopup.IsOpen = true;
+        }
+
+        //Close Popup when clicking x button
+        private void Hide_Click(object sender, RoutedEventArgs e)
+        {
+            MyPopup.IsOpen = false;
+
+        }
     }
 }

@@ -29,31 +29,6 @@ namespace PTSRDesktopUI.Views
             InitializeComponent();
         }
 
-        #region Theme-Change toggle button on window bar
-
-        private void ThemeToggleBtn_Checked_1(object sender, RoutedEventArgs e)
-        {
-            ThemeManager.ChangeAppTheme(Application.Current, "BaseDark");
-            TextTheme.Text = "Hell";           
-            var bc = new BrushConverter();
-            TopMenu.Background = (Brush)bc.ConvertFrom("#FF2F2F2F");
-            TopMenuItem1.Background = (Brush)bc.ConvertFrom("#FF2F2F2F");
-            LogOut.Background = (Brush)bc.ConvertFrom("#FF2F2F2F");
-
-        }
-
-        private void ThemeToggleBtn_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ThemeManager.ChangeAppTheme(Application.Current, "BaseLight");
-            TextTheme.Text = "Dunkel";
-            var bc = new BrushConverter();
-            TopMenu.Background = (Brush)bc.ConvertFrom("#FFF7F7F7");
-            TopMenuItem1.Background = (Brush)bc.ConvertFrom("#FFF7F7F7");
-            LogOut.Background = (Brush)bc.ConvertFrom("#FFF7F7F7");
-        }
-
-        #endregion
-
         #region Save controller name based on sub-menu controller button click
 
         private void Btn_R40A_Click(object sender, RoutedEventArgs e)

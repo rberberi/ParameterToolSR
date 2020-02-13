@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PTSRDesktopUI.Views"
+             xmlns:myControl="clr-namespace:PTSRDesktopUI.Helpers"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:helpers="clr-namespace:PTSRDesktopUI.Helpers"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" FontSize="24"
@@ -68,6 +70,8 @@
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="ID" Binding="{Binding Path=ID}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Anlage" Binding="{Binding Path=Anlage}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Controller" Binding="{Binding Path=Controller}"/>
@@ -77,12 +81,12 @@
                                     Header="Segment" Binding="{Binding Path=Segment}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Parameter" Binding="{Binding Path=ParameterName}"/>
-                <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellCentered}" Header="Info">
+                <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellCentered}" Header="Info">
                     <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button BorderThickness="0" Height="30" Width="30" 
+                        <DataTemplate x:Name="info">
+                            <Button x:Name="infoBtn" BorderThickness="0" Height="30" Width="30" 
                                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                                    cal:Message.Attach="ShowPath($this)">
+                                    cal:Message.Attach="ShowPath($this)" Cursor="Hand" Click="Button_Click">
                                 <Image Source="/Images/infoicon.png"/>
                             </Button>
                         </DataTemplate>
@@ -115,7 +119,7 @@
                             <Button 
                                 Visibility="{Binding DataContext.Validiert, 
                                    Converter={StaticResource BoolToVisConverter}, RelativeSource={RelativeSource AncestorType=DataGridCell}}"                              
-                                cal:Message.Attach="[Event Click] = [Action Validate($this)]"
+                                cal:Message.Attach="[Event Click] = [Action Validate($this)]" Cursor="Hand"
                                 cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}">
                                 Validieren</Button>
                         </DataTemplate>
@@ -123,6 +127,34 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <!-- Path Info Popup Dialog -->
+        <Popup x:Name="MyPopup" Placement="Mouse">
+            <i:Interaction.Behaviors>
+                <myControl:MouseDragPopupBehavior/>
+            </i:Interaction.Behaviors>
+            <Border BorderBrush="Gray" BorderThickness="1">
+                <StackPanel Background="White">
+                    <Grid Background="#FFEEF0F1">
+                        <Image Source="/Images/infoicon.png" HorizontalAlignment="Left"
+                            Height="20" Width="20" Margin="2 2 2 2"/>
+                        <Label HorizontalAlignment="Center" FontSize="14" Grid.Column="1" >
+                            <TextBlock Text="{Binding Path=ID, Mode=TwoWay, StringFormat='Path Info - ID: {0}'}"  
+                                       Margin="2 2 2 2" FontFamily="Segoe UI Light"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Label>
+                        <Button HorizontalAlignment="Right" Click="Hide_Click"  Height="20" Width="20"
+                                Foreground="Black" Background="Transparent" Margin="2 2 2 2" 
+                                BorderBrush="Transparent" Cursor="Hand">
+                            X</Button>
+                    </Grid>
+                    <Label HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding Path=Path, Mode=TwoWay}" FontSize="20" Grid.Column="1"  Margin="10 10 10 10"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Light"/>
+                    </Label>
+                </StackPanel>
+            </Border>
+        </Popup>
 
     </Grid>
 </UserControl>

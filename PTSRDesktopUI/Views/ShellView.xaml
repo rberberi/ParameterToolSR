@@ -14,20 +14,6 @@
                       Icon="\\FILESRV1.de.gestamp.com\Services\Produktion_Prozessoptimierung\Technische_Dokumentation\Bildverarbeitung\SmartRay\Software\ParameterToolSR\applogo.ico"
                       WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
-    <!-- Theme Toggle Button -->
-    <Controls:MetroWindow.RightWindowCommands>
-        <Controls:WindowCommands>
-            <ToggleButton x:Name="ThemeToggleBtn" Checked="ThemeToggleBtn_Checked_1"
-                          Unchecked="ThemeToggleBtn_Unchecked">
-                <StackPanel Orientation="Horizontal">
-                    <iconPacks:PackIconModern Width="24" Height="24" Kind="DrawBrush" />
-                    <TextBlock x:Name="TextTheme" Margin="4 0 0 0" VerticalAlignment="Center" 
-                               Text="Dunkel" />
-                </StackPanel>
-            </ToggleButton>
-        </Controls:WindowCommands>
-    </Controls:MetroWindow.RightWindowCommands>
-
     <!--Resource Styles-->
     <Controls:MetroWindow.Resources>
         <!--<c:MultiValueConverter x:Key="MultiValueConverter"/>-->
@@ -79,7 +65,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" VerticalAlignment="Bottom"  FontFamily="Segoe UI Light" Foreground="Gray"> 
-                Version 1.0.2.0
+                Version 1.0.2.3
             </TextBlock>
             <!--Side Menu Stack Panel-->
                 <StackPanel x:Name="Menu" Grid.Column="0" Margin="30"
