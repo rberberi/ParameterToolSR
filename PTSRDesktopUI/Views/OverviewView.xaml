@@ -67,7 +67,7 @@
 
         <!--Datagrid Table-->
         <DataGrid Grid.Row="1" x:Name="Changes" CanUserAddRows="False" 
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False" AlternatingRowBackground="#FFF7F7F7">
             <DataGrid.Columns>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="ID" Binding="{Binding Path=ID}"/>
@@ -75,6 +75,8 @@
                                     Header="Anlage" Binding="{Binding Path=Anlage}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Controller" Binding="{Binding Path=Controller}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Job Nr" Binding="{Binding Path=Job}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Naht" Binding="{Binding Path=Naht}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
@@ -97,7 +99,7 @@
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Neu" Binding="{Binding Path=WertNeu}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                    Header="Geändert am" Binding="{Binding Path=Aenderungsdatum, 
+                                    Header="Änd-Dat" Binding="{Binding Path=Aenderungsdatum, 
                                     StringFormat='{}{0:dd.MM HH:mm}'}"/>
                 <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellCentered}" Header="Validiert" >
                     <DataGridTemplateColumn.CellTemplate>
@@ -111,12 +113,13 @@
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Von" Binding="{Binding Path=ValidiertVon}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                    Header="Validiert am" Binding="{Binding Path=Validierungsdatum, 
+                                    Header="Val-Dat" Binding="{Binding Path=Validierungsdatum, 
                                     TargetNullValue='-', StringFormat='{}{0:dd.MM HH:mm}'}"/>
                 <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellCentered}" Header="Validieren">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button 
+                                Margin="20 0 20 0"
                                 Visibility="{Binding DataContext.Validiert, 
                                    Converter={StaticResource BoolToVisConverter}, RelativeSource={RelativeSource AncestorType=DataGridCell}}"                              
                                 cal:Message.Attach="[Event Click] = [Action Validate($this)]" Cursor="Hand"

@@ -87,15 +87,15 @@
                                 Click="Btn_UG10_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                         <Button x:Name="Btn_UG20" Style="{StaticResource MenuBtn}" Content="UG 20"
                                 Click="Btn_UG20_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP30" Style="{StaticResource MenuBtn}" Content="30" 
+                        <Button x:Name="Btn_OP30" Style="{StaticResource MenuBtn}" Content="OP 30" 
                                 Click="Btn_OP30_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP7011" Style="{StaticResource MenuBtn}" Content="70-11"
+                        <Button x:Name="Btn_OP7011" Style="{StaticResource MenuBtn}" Content="OP 70__11"
                                 Click="Btn_OP7011_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP7012" Style="{StaticResource MenuBtn}" Content="70-12"
+                        <Button x:Name="Btn_OP7012" Style="{StaticResource MenuBtn}" Content="OP 70__12"
                                 Click="Btn_OP7012_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP7013" Style="{StaticResource MenuBtn}" Content="70-13"
+                        <Button x:Name="Btn_OP7013" Style="{StaticResource MenuBtn}" Content="OP 70__13"
                                 Click="Btn_OP7013_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP7014" Style="{StaticResource MenuBtn}" Content="70-14"
+                        <Button x:Name="Btn_OP7014" Style="{StaticResource MenuBtn}" Content="OP 70__14"
                                 Click="Btn_OP7014_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
@@ -106,9 +106,9 @@
                     <StackPanel x:Name="Submenu_AudiB9" Visibility="{Binding ElementName=MenuBtn_B9, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button x:Name="Btn_2WD" Style="{StaticResource MenuBtn}" Content="Audi 2WD"
+                        <Button x:Name="Btn_2WD" Style="{StaticResource MenuBtn}" Content="2WD"
                                 Click="Btn_2WD_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_4WD" Style="{StaticResource MenuBtn}" Content="Audi 4WD"
+                        <Button x:Name="Btn_4WD" Style="{StaticResource MenuBtn}" Content="4WD"
                                 Click="Btn_4WD_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
@@ -119,9 +119,9 @@
                     <StackPanel x:Name="Submenu_UKLVAT" Visibility="{Binding ElementName=MenuBtn_VAT, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button x:Name="Btn_OP10" Style="{StaticResource MenuBtn}" Content="VAT 10"
+                        <Button x:Name="Btn_OP10" Style="{StaticResource MenuBtn}" Content="OP 10"
                                 Click="Btn_OP10_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP40" Style="{StaticResource MenuBtn}" Content="VAT 40"
+                        <Button x:Name="Btn_OP40" Style="{StaticResource MenuBtn}" Content="OP 40"
                                 Click="Btn_OP40_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
@@ -132,9 +132,9 @@
                     <StackPanel x:Name="Submenu_UKL1" Visibility="{Binding ElementName=MenuBtn_UKL1, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button x:Name="Btn_QLLinks" Style="{StaticResource MenuBtn}" Content="QL Links"
+                        <Button x:Name="Btn_QLLinks" Style="{StaticResource MenuBtn}" Content="40__11"
                                 Click="Btn_QLLinks_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_QLRechts" Style="{StaticResource MenuBtn}" Content="QL Rechts"
+                        <Button x:Name="Btn_QLRechts" Style="{StaticResource MenuBtn}" Content="40__12"
                                 Click="Btn_QLRechts_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
@@ -145,13 +145,13 @@
                     <StackPanel x:Name="Submenu_UKL2" Visibility="{Binding ElementName=MenuBtn_UKL2, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button x:Name="Btn_R40A" Style="{StaticResource MenuBtn}" Content="R40 A" 
+                        <Button x:Name="Btn_R40A" Style="{StaticResource MenuBtn}" Content="40__A" 
                                 Click="Btn_R40A_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_R40B" Style="{StaticResource MenuBtn}" Content="R40 B"
+                        <Button x:Name="Btn_R40B" Style="{StaticResource MenuBtn}" Content="40__B"
                                 Click="Btn_R40B_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_R40C" Style="{StaticResource MenuBtn}" Content="R40 C"
+                        <Button x:Name="Btn_R40C" Style="{StaticResource MenuBtn}" Content="40__C"
                                 Click="Btn_R40C_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_R40D" Style="{StaticResource MenuBtn}" Content="R40 D"
+                        <Button x:Name="Btn_R40D" Style="{StaticResource MenuBtn}" Content="40__D"
                                 Click="Btn_R40D_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 

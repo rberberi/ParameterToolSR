@@ -11,6 +11,10 @@ namespace PTSRDesktopUI.Models
         public int ID { get; set; }
         public string Anlage { get; set; }
         public string Controller { get; set; }
+        public string Job { get; set; }
+        public string Naht { get; set; }
+        public string Segment { get; set; }
+        public string ParameterPfad { get; set; }
         public string ParameterName { get; set; }
         public string WertAlt { get; set; }
         public string WertNeu { get; set; }
@@ -38,10 +42,6 @@ namespace PTSRDesktopUI.Models
             get { return _validiertVon; }
             set { _validiertVon = value; NotifyPropertyChanged(); }
         }
-
-        public string Naht { get; set; }
-        public string Segment { get; set; }
-        public string ParameterPfad { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
