@@ -8,23 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace PTSRDesktopUI.ViewModels
 {
+    //Main Class which controls the application
     public class ShellViewModel:Conductor<object>, IHandle<LogOnEvent>
     {
+        //Variables
         private IEventAggregator _events;
-        private TestViewModel _testVM;
-        private TestControllerViewModel _testCM;
         private SimpleContainer _container;
         public int showMenu = 0; //1-Show Menu, 0-HideMenu
 
-        public ShellViewModel(IEventAggregator events, TestViewModel testVM, TestControllerViewModel testCM,
+        //Constructor
+        public ShellViewModel(IEventAggregator events,
             SimpleContainer container, LoginViewModel loginVM)
         {
             _events = events;
-            _testVM = testVM;
-            _testCM = testCM;
             _container = container;
 
             _events.Subscribe(this);
@@ -33,8 +34,8 @@ namespace PTSRDesktopUI.ViewModels
 
         }
 
-        //IsErrorVisible Property
-        public bool IsMenuVisible
+        //Is Side Menu Visible Property
+        public bool IsSideMenuVisible
         {
             get
             {
@@ -48,25 +49,48 @@ namespace PTSRDesktopUI.ViewModels
             }
         }
 
-        //LogIn function
-        public void MenuSelect()
+        //Controller Submenu Select Function
+        public void ControllerSubmenuSelect()
         {
-            ActivateItem(_testCM);
+            ControllerViewModel controllerVM = new ControllerViewModel() ;
+            ActivateItem(controllerVM);
         }
 
+        //Facility Submenu Select Function
+        public void FacilityMenuSelect()
+        {
+            FacilityViewModel facilityVM = new FacilityViewModel();
+            ActivateItem(facilityVM);
+        }
+
+        public void HideMenu()
+        {
+            showMenu = 0;
+            NotifyOfPropertyChange(() => IsSideMenuVisible);
+        }
+
+        public void ShowMenu()
+        {
+            showMenu = 1;
+            NotifyOfPropertyChange(() => IsSideMenuVisible);
+        }
+
+        //LogIn and Overview function
         public void Handle(LogOnEvent message)
         {
             showMenu = 1;
-            NotifyOfPropertyChange(() => IsMenuVisible);
-            ActivateItem(_testVM);
+            NotifyOfPropertyChange(() => IsSideMenuVisible);
+            OverviewViewModel overviewVM = new OverviewViewModel();
+            ActivateItem(overviewVM);
         }
 
+        //LogOut function
         public void LogOut()
         {
             _events.PublishOnUIThread(new LogOnEvent());
             ActivateItem(_container.GetInstance<LoginViewModel>());
             showMenu = 0;
-            NotifyOfPropertyChange(() => IsMenuVisible);
+            NotifyOfPropertyChange(() => IsSideMenuVisible);
         }
     }
 }

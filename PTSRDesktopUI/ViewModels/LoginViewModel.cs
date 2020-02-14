@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using MahApps.Metro.Controls;
 using PTSRDesktopUI.EventModels;
 using PTSRDesktopUI.Helpers;
 using PTSRDesktopUI.Models;
@@ -13,16 +14,18 @@ namespace PTSRDesktopUI.ViewModels
 {
     public class LoginViewModel : Screen
     {
+        //Variables
         private string _userName;
         private string _password;
         private IEventAggregator _events;
 
+        //Constructor
         public LoginViewModel(IEventAggregator events)
         {
             _events = events;
         }
 
-        //Username Getter-Setter
+        //Username Property
         public string UserName
         {
             get
@@ -37,7 +40,7 @@ namespace PTSRDesktopUI.ViewModels
             }
         }
 
-        //Password Getter-Setter
+        //Password Property
         public string Password
         {
             get
@@ -73,18 +76,23 @@ namespace PTSRDesktopUI.ViewModels
         {
             try
             {
-
+                //Create connection to dataAccess class
                 DataAccess db = new DataAccess();
 
-                string value = db.getUser(UserName, Password);
-                int test = Convert.ToInt16(value); 
-                if (test == 1)
-                {            
+                //Save recieved value from dataccess function in temp value
+                //Value is either 1 or 0 in string from
+                string tempValue = db.getUser(UserName, Password);
+                //Convert the temp value to integer and save it in result variable
+                int result = Convert.ToInt16(tempValue); 
+                //If result is 1 then login, else give login error message
+                if (result == 1)
+                {
+                    LoggedUser.loggedUser = UserName;
                     _events.PublishOnUIThread(new LogOnEvent());
                 }
                 else 
                 {
-                    MessageBox.Show("Anmeldedaten sind falsch oder Benutzer existiert nicht!");
+                    MessageBox.Show("Anmeldedaten sind falsch oder Benutzer existiert nicht!","Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
             }

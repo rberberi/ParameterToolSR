@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,11 @@ using System.Windows.Shapes;
 namespace PTSRDesktopUI.Views
 {
     /// <summary>
-    /// Interaktionslogik für TestControllerView.xaml
+    /// Interaktionslogik für MenuView.xaml
     /// </summary>
-    public partial class TestControllerView : UserControl
+    public partial class MenuView : MetroContentControl
     {
-        public TestControllerView()
+        public MenuView()
         {
             InitializeComponent();
         }
