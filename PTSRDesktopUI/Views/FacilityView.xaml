@@ -25,7 +25,7 @@
         <!--Row Definitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--Logged User Grid-->

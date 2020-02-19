@@ -58,6 +58,7 @@ namespace PTSRDesktopUI.ViewModels
             model.ValidiertVon = LoggedUser.loggedUser;
             db.CheckValidate(model);
             MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
+            NotifyOfPropertyChange(() => Changes);
         }
 
         //Show parameter path
