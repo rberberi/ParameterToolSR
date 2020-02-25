@@ -64,7 +64,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" VerticalAlignment="Bottom"  FontFamily="Segoe UI Light" Foreground="Gray"> 
+            <TextBlock Grid.Column="0" VerticalAlignment="Bottom"  FontFamily="Segoe UI Light" Foreground="Gray"
+                       Visibility="{Binding IsSideMenuVisible, 
+                           Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}"> 
                 Version 1.0.2.3
             </TextBlock>
             <!--Side Menu Stack Panel-->

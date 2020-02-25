@@ -74,9 +74,9 @@
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Controller" Binding="{Binding Path=Controller}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                    Header="Job Nr" Binding="{Binding Path=Job}"/>
-                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                    Header="Naht" Binding="{Binding Path=Naht}"/>
+                                    Header="Job" Binding="{Binding Path=Job}"/>
+                <!--<DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                    Header="Naht" Binding="{Binding Path=Naht}"/>-->
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                     Header="Segment" Binding="{Binding Path=Segment}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
