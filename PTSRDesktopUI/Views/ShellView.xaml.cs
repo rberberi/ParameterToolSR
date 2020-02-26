@@ -93,12 +93,12 @@ namespace PTSRDesktopUI.Views
 
         private void Btn_QLLinks_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "QL_Links";
+            SelectedController.controllerName = "40_11";
         }
 
         private void Btn_QLRechts_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "QL_Rechts";
+            SelectedController.controllerName = "40_12";
         }
 
         #endregion
