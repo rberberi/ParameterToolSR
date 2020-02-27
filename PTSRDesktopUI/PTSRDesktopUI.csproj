@@ -27,8 +27,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <MinimumRequiredVersion>1.0.2.7</MinimumRequiredVersion>
-    <ApplicationRevision>8</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.2.8</MinimumRequiredVersion>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -270,7 +270,9 @@
     <None Include="PTSRDesktopUI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -316,6 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\infoicon_8Ve_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Gestamp_Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

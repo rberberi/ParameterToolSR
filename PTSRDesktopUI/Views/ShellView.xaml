@@ -64,11 +64,20 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" VerticalAlignment="Bottom"  FontFamily="Segoe UI Light" Foreground="Gray"
-                       Visibility="{Binding IsSideMenuVisible, 
-                           Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}"> 
+            <StackPanel Grid.Column="0" VerticalAlignment="Bottom" 
+                        Visibility="{Binding IsSideMenuVisible, 
+                           Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Visible}">
+                <TextBlock FontFamily="Segoe UI Light" Foreground="Gray" FontSize="25"
+                       HorizontalAlignment="Center"> 
+                Rei Berberi
+                </TextBlock>
+                <TextBlock FontFamily="Segoe UI Light" Foreground="Gray" FontSize="25"
+                      HorizontalAlignment="Center" > 
                 Version 1.0.2.3
-            </TextBlock>
+                </TextBlock>
+                <Image Source="/Images/Gestamp_Logo.png" Height="40" Width="150"/>
+            </StackPanel>
+
             <!--Side Menu Stack Panel-->
                 <StackPanel x:Name="Menu" Grid.Column="0" Margin="30"
                            Visibility="{Binding IsSideMenuVisible, 

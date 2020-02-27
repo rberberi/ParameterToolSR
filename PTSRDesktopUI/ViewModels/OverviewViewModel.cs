@@ -53,12 +53,20 @@ namespace PTSRDesktopUI.ViewModels
         //Validate_Btn click event
         public void Validate(ChangesModel model)
         {
-            model.Validiert = true;
-            model.Validierungsdatum = DateTime.Now;
-            model.ValidiertVon = LoggedUser.loggedUser;
-            db.CheckValidate(model);
-            MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
-            NotifyOfPropertyChange(() => Changes);
+            if (MessageBox.Show("Sind Sie sicher?", "Überprüfen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                model.Validiert = true;
+                model.Validierungsdatum = DateTime.Now;
+                model.ValidiertVon = LoggedUser.loggedUser;
+                db.CheckValidate(model);
+                MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
+                NotifyOfPropertyChange(() => Changes);
+            }
+            else
+            {
+                return;
+            }
+
         }
 
         //Show parameter path
