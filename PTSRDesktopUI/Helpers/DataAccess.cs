@@ -136,5 +136,15 @@ namespace PTSRDesktopUI.Helpers
                 connection.Execute(sql, parameters);
             }
         }
+
+        public void UnCheckValidate(ChangesModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var parameters = new { validiert = model.Validiert, validierungsdatum = model.Validierungsdatum, validiertvon = model.ValidiertVon, id = model.ID };
+                var sql = "UPDATE ChangesNeu SET Validiert=@validiert, Validierungsdatum = @validierungsdatum, ValidiertVon=@validiertvon FROM ChangesNeu WHERE ID = @id";
+                connection.Execute(sql, parameters);
+            }
+        }
     }
 }

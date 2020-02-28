@@ -66,7 +66,24 @@ namespace PTSRDesktopUI.ViewModels
             {
                 return;
             }
+        }
 
+        //Validate_Btn click event
+        public void Unvalidate(ChangesModel model)
+        {
+            if (MessageBox.Show("Sind Sie sicher?", "Überprüfen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                model.Validiert = false;
+                model.Validierungsdatum = null;
+                model.ValidiertVon = null;
+                db.UnCheckValidate(model);
+                MessageBox.Show("Validierung rückgänging gemacht.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
+                NotifyOfPropertyChange(() => Changes);
+            }
+            else
+            {
+                return;
+            }
         }
 
         //Show parameter path

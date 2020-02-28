@@ -45,11 +45,9 @@
     <DockPanel>
         <!--Top Menu-->
         <Menu x:Name="TopMenu" DockPanel.Dock="Top" FontSize="18" Background="#FFF7F7F7">
-            <MenuItem x:Name="TopMenuItem0" Header="_Ansicht" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
-                <MenuItem x:Name="MenuItem0" Header="_Menü" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
-                    <MenuItem x:Name="HideMenu" Header="_Ausblenden" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
-                    <MenuItem x:Name="ShowMenu" Header="_Einblenden" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
-                </MenuItem>
+            <MenuItem x:Name="MenuItem0" Header="_Menü" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
+                <MenuItem x:Name="HideMenu" Header="_Ausblenden" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
+                <MenuItem x:Name="ShowMenu" Header="_Einblenden" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
             </MenuItem>
             <MenuItem x:Name="TopMenuItem1" Header="_Benutzer" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
                 <MenuItem x:Name="LogOut" Header="_Ausloggen" Click="LogOut_Click" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
@@ -73,7 +71,7 @@
                 </TextBlock>
                 <TextBlock FontFamily="Segoe UI Light" Foreground="Gray" FontSize="25"
                       HorizontalAlignment="Center" > 
-                Version 1.0.2.3
+                Version 1.0.3.0
                 </TextBlock>
                 <Image Source="/Images/Gestamp_Logo.png" Height="40" Width="150"/>
             </StackPanel>
@@ -167,6 +165,10 @@
                     </StackPanel>
 
                 </StackPanel>
+            <!--<Button Grid.Column="0" HorizontalAlignment="Right"
+                    cal:Message.Attach="[Event Click] = [Action HideMenu()]">
+                ◁
+            </Button>-->
 
             <!--Changes Content Control-->
             <ContentControl x:Name="ActiveItem" Margin="5" Grid.Column="1" />

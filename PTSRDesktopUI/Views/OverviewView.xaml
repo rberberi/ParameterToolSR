@@ -18,6 +18,7 @@
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
         </Style>
         <helpers:BoolToVisibleOrHidden x:Key="BoolToVisConverter" Collapse="True" Reverse="True" />
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
 
     <!--Main Grid-->
@@ -139,24 +140,33 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                Header="Von" Binding="{Binding Path=ValidiertVon}"/>
-                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                Header="Val-Dat" Binding="{Binding Path=Validierungsdatum, 
-                                TargetNullValue='-', StringFormat='{}{0:dd.MM HH:mm}'}"/>
                 <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellCentered}" Header="Validieren">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button 
+                            <Grid>
+                                <Button 
                             Margin="20 0 20 0"
                             Visibility="{Binding DataContext.Validiert, 
                                 Converter={StaticResource BoolToVisConverter}, RelativeSource={RelativeSource AncestorType=DataGridCell}}"                              
                             cal:Message.Attach="[Event Click] = [Action Validate($this)]" Cursor="Hand"
                             cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}">
-                                Validieren</Button>
+                                    Validieren</Button>
+                                <Button 
+                            Margin="20 0 20 0"
+                            Visibility="{Binding DataContext.Validiert, 
+                                Converter={StaticResource BoolToVis}, RelativeSource={RelativeSource AncestorType=DataGridCell}}"                              
+                            cal:Message.Attach="[Event Click] = [Action Unvalidate($this)]" Cursor="Hand"
+                            cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                    Unvalidieren</Button>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                Header="Von" Binding="{Binding Path=ValidiertVon}"/>
+                <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
+                                Header="Val-Dat" Binding="{Binding Path=Validierungsdatum, 
+                                TargetNullValue='-', StringFormat='{}{0:dd.MM HH:mm}'}"/>
             </DataGrid.Columns>
         </DataGrid>
 
