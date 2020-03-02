@@ -52,11 +52,35 @@ namespace PTSRDesktopUI.ViewModels
         //Validate_Btn click event
         public void Validate(ChangesModel model)
         {
-            model.Validiert = true;
-            model.Validierungsdatum = DateTime.Now;
-            model.ValidiertVon = LoggedUser.loggedUser;
-            db.CheckValidate(model);
-            MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (MessageBox.Show("Möchten Sie wirklich validieren?", "Validieren", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                model.Validiert = true;
+                model.Validierungsdatum = DateTime.Now;
+                model.ValidiertVon = LoggedUser.loggedUser;
+                db.CheckValidate(model);
+                MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        //Unalidate_Btn click event
+        public void Unvalidate(ChangesModel model)
+        {
+            if (MessageBox.Show("Möchten Sie wirklich die Validierung rückgängig machen?", "Validierung rückgängig machen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                model.Validiert = false;
+                model.Validierungsdatum = null;
+                model.ValidiertVon = null;
+                db.UnCheckValidate(model);
+                MessageBox.Show("Validierung rückgänging gemacht.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                return;
+            }
         }
 
         //Show parameter path

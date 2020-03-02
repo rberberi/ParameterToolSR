@@ -52,6 +52,12 @@
             <MenuItem x:Name="TopMenuItem1" Header="_Benutzer" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
                 <MenuItem x:Name="LogOut" Header="_Ausloggen" Click="LogOut_Click" Background="#FFF7F7F7" FontFamily="Segoe UI Light" />
             </MenuItem>
+            <MenuItem x:Name="TopMenuItem2" Header="_Info" Background="#FFF7F7F7" FontFamily="Segoe UI Light">
+                <MenuItem Header="_Verkürzungen"  Background="#FFF7F7F7" FontFamily="Segoe UI Light" >
+                    <TextBlock>V = Verifikation</TextBlock>
+                    <TextBlock>T = Toleranzen</TextBlock>
+                </MenuItem>
+            </MenuItem>
         </Menu>
         
         <!--Main Grid-->
@@ -100,11 +106,11 @@
                                 Click="Btn_OP30_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                         <Button x:Name="Btn_OP7011" Style="{StaticResource MenuBtn}" Content="OP 70__11"
                                 Click="Btn_OP7011_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP7012" Style="{StaticResource MenuBtn}" Content="OP 70__12"
+                        <Button x:Name="Btn_OP7012" Style="{StaticResource MenuBtn}" Content="OP 70__21"
                                 Click="Btn_OP7012_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP7013" Style="{StaticResource MenuBtn}" Content="OP 70__13"
+                        <Button x:Name="Btn_OP7013" Style="{StaticResource MenuBtn}" Content="OP 70__31"
                                 Click="Btn_OP7013_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_OP7014" Style="{StaticResource MenuBtn}" Content="OP 70__14"
+                        <Button x:Name="Btn_OP7014" Style="{StaticResource MenuBtn}" Content="OP 70__41"
                                 Click="Btn_OP7014_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
                     </StackPanel>
 
@@ -151,26 +157,21 @@
                     <RadioButton x:Name="MenuBtn_UKL2" GroupName="menubtn" Content="NLA 592 - UKL 2"
                                   Style="{StaticResource ToggleMenuBtn}"
                                   Click="MenuBtn_UKL2_Click" cal:Message.Attach="FacilityMenuSelect"/>
-                    <StackPanel x:Name="Submenu_UKL2" Visibility="{Binding ElementName=MenuBtn_UKL2, 
+                <StackPanel x:Name="Submenu_UKL2" Visibility="{Binding ElementName=MenuBtn_UKL2, 
                         Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, 
                         FallbackValue=Visible}">
-                        <Button x:Name="Btn_R40A" Style="{StaticResource MenuBtn}" Content="40__A" 
+                    <Button x:Name="Btn_R40A" Style="{StaticResource MenuBtn}" Content="40__A" 
                                 Click="Btn_R40A_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_R40B" Style="{StaticResource MenuBtn}" Content="40__B"
+                    <Button x:Name="Btn_R40B" Style="{StaticResource MenuBtn}" Content="40__B"
                                 Click="Btn_R40B_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_R40C" Style="{StaticResource MenuBtn}" Content="40__C"
+                    <Button x:Name="Btn_R40C" Style="{StaticResource MenuBtn}" Content="40__C"
                                 Click="Btn_R40C_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                        <Button x:Name="Btn_R40D" Style="{StaticResource MenuBtn}" Content="40__D"
+                    <Button x:Name="Btn_R40D" Style="{StaticResource MenuBtn}" Content="40__D"
                                 Click="Btn_R40D_Click" cal:Message.Attach="ControllerSubmenuSelect"/>
-                    </StackPanel>
-
                 </StackPanel>
-            <!--<Button Grid.Column="0" HorizontalAlignment="Right"
-                    cal:Message.Attach="[Event Click] = [Action HideMenu()]">
-                ◁
-            </Button>-->
 
-            <!--Changes Content Control-->
+            </StackPanel>
+
             <ContentControl x:Name="ActiveItem" Margin="5" Grid.Column="1" />
         
         </Grid>
