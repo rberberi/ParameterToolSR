@@ -25,7 +25,8 @@ namespace PTSRDesktopUI.ViewModels
         {
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
             //Use the global variable facilityName to call data from database
-            ChangesFacility = new BindableCollection<ChangesModel>(db.GetChangesFacility(SelectedFacility.facilityName));
+            //ChangesFacility = new BindableCollection<ChangesModel>(db.GetChangesFacility(SelectedFacility.facilityName));
+            ChangesFacility = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesFacility(SelectedFacility.facilityName));
 
             //Notify ChangesController for changes
             NotifyOfPropertyChange(() => ChangesFacility);

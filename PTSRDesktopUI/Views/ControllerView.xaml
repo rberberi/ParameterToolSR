@@ -50,7 +50,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!--Drop Down ComboBox to swap between validated and not validated changes-->
-            <ComboBox Grid.Column="0" HorizontalAlignment="Left" SelectedIndex="0" Margin="0 5 0 5" 
+            <ComboBox Grid.Column="0" HorizontalAlignment="Left" SelectedIndex="2" Margin="0 5 0 5" 
                       FontSize="20" FontFamily="Segoe UI Light">
                 <ComboBoxItem cal:Message.Attach="[Event Selected] = [Action AllChanges]">
                     Alle Änderungen

@@ -22,7 +22,8 @@ namespace PTSRDesktopUI.ViewModels
         public OverviewViewModel()
         {
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
-            Changes = new BindableCollection<ChangesModel>(db.GetChangesOverview());
+            //Changes = new BindableCollection<ChangesModel>(db.GetChangesOverview());
+            Changes = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesOverview());
 
             //Notify for changes
             NotifyOfPropertyChange(() => Changes);

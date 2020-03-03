@@ -22,7 +22,8 @@ namespace PTSRDesktopUI.ViewModels
         {
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
             //Use the global variable controllerName to call data from database
-            ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
+            //ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
+            ChangesController = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesController(SelectedController.controllerName));
 
             //Notify ChangesController for changes
             NotifyOfPropertyChange(() => ChangesController);
