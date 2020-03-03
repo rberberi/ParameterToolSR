@@ -44,28 +44,38 @@
             <TextBlock x:Name="loggedUser_textblock" Grid.Column="1" 
                    FontFamily="Segoe UI Light" FontSize="20"/>
         </Grid>
-        <Grid Grid.Row="0">
+
+        <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="0 5 0 5" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!--Drop Down ComboBox to swap between validated and not validated changes-->
-            <ComboBox Grid.Column="0" HorizontalAlignment="Left" SelectedIndex="2" Margin="0 5 0 5" 
-                      FontSize="20" FontFamily="Segoe UI Light">
-                <ComboBoxItem cal:Message.Attach="[Event Selected] = [Action AllChanges]">
+            <ComboBox x:Name="combo_bx" Grid.Column="0" SelectedIndex="2" Margin="0 5 0 5" 
+                  FontSize="20" FontFamily="Segoe UI Light">
+                <ComboBoxItem x:Name="cb1" cal:Message.Attach="[Event Selected] = [Action AllChanges]">
                     Alle Änderungen
                 </ComboBoxItem>
-                <ComboBoxItem cal:Message.Attach="[Event Selected] = [Action ValidatedChanges]"
-                    >Validierte Änderungen
+                <ComboBoxItem x:Name="cb2" cal:Message.Attach="[Event Selected] = [Action ValidatedChanges]"
+                >Validierte Änderungen
                 </ComboBoxItem>
-                <ComboBoxItem cal:Message.Attach="[Event Selected] = [Action NotValidatedChanges]">
+                <ComboBoxItem x:Name="cb3" cal:Message.Attach="[Event Selected] = [Action NotValidatedChanges]">
                     Nicht Validierte Änderungen
                 </ComboBoxItem>
             </ComboBox>
-            <!--<Button Grid.Column="1" cal:Message.Attach="[Event Click] = [Action Validate(ChangesController.SelectedItem)]" Cursor="Hand"
-                    >
-                Validieren
-            </Button>-->
+            <Button x:Name="Reload" Grid.Column="1" Margin="10 0 0 0" >
+                <Button.Style>
+                    <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
+                        <Setter Property="Visibility" Value="Hidden" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=cb3, Path=IsSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                Aktualisieren
+            </Button>
         </Grid>
 
 

@@ -30,6 +30,12 @@ namespace PTSRDesktopUI.ViewModels
 
         }
 
+        public void Reload()
+        {
+            Changes = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesOverview());
+            NotifyOfPropertyChange(() => Changes);
+        }
+
         //Function for ComboBox item to display validated changes
         public void ValidatedChanges()
         {
@@ -60,7 +66,6 @@ namespace PTSRDesktopUI.ViewModels
                 model.Validierungsdatum = DateTime.Now;
                 model.ValidiertVon = LoggedUser.loggedUser;
                 db.CheckValidate(model);
-                MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
@@ -77,7 +82,6 @@ namespace PTSRDesktopUI.ViewModels
                 model.Validierungsdatum = null;
                 model.ValidiertVon = null;
                 db.UnCheckValidate(model);
-                MessageBox.Show("Validierung rückgänging gemacht.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {

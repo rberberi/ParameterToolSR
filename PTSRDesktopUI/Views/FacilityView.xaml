@@ -46,19 +46,38 @@
                    FontFamily="Segoe UI Light" FontSize="20"/>
         </Grid>
 
-        <!--Drop Down ComboBox to swap between validated and not validated changes-->
-        <ComboBox Grid.Row="0" HorizontalAlignment="Left" SelectedIndex="2" Margin="0 5 0 5" 
+        <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="0 5 0 5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <!--Drop Down ComboBox to swap between validated and not validated changes-->
+            <ComboBox x:Name="combo_bx" Grid.Column="0" SelectedIndex="2" Margin="0 5 0 5" 
                   FontSize="20" FontFamily="Segoe UI Light">
-            <ComboBoxItem cal:Message.Attach="[Event Selected] = [Action AllChanges]">
-                Alle Änderungen
-            </ComboBoxItem>
-            <ComboBoxItem cal:Message.Attach="[Event Selected] = [Action ValidatedChanges]"
+                <ComboBoxItem x:Name="cb1" cal:Message.Attach="[Event Selected] = [Action AllChanges]">
+                    Alle Änderungen
+                </ComboBoxItem>
+                <ComboBoxItem x:Name="cb2" cal:Message.Attach="[Event Selected] = [Action ValidatedChanges]"
                 >Validierte Änderungen
-            </ComboBoxItem>
-            <ComboBoxItem cal:Message.Attach="[Event Selected] = [Action NotValidatedChanges]">
-                Nicht Validierte Änderungen
-            </ComboBoxItem>
-        </ComboBox>
+                </ComboBoxItem>
+                <ComboBoxItem x:Name="cb3" cal:Message.Attach="[Event Selected] = [Action NotValidatedChanges]">
+                    Nicht Validierte Änderungen
+                </ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="Reload" Grid.Column="1" Margin="10 0 0 0" >
+                <Button.Style>
+                    <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
+                        <Setter Property="Visibility" Value="Hidden" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=cb3, Path=IsSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                Aktualisieren
+            </Button>
+        </Grid>
 
         <!--View Title label-->
         <Label x:Name="ViewTitle_Lbl" Grid.Row="0" HorizontalAlignment="Center" FontFamily="Segoe UI Light" 
