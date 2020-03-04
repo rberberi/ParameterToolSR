@@ -63,7 +63,33 @@
                     Nicht Validierte Änderungen
                 </ComboBoxItem>
             </ComboBox>
-            <Button x:Name="Reload" Grid.Column="1" Margin="10 0 0 0" >
+            <Button x:Name="ReloadAll" Grid.Column="1" Margin="10 0 0 0" >
+                <Button.Style>
+                    <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
+                        <Setter Property="Visibility" Value="Hidden" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=cb1, Path=IsSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                Aktualisieren
+            </Button>
+            <Button x:Name="ReloadVal" Grid.Column="1" Margin="10 0 0 0" >
+                <Button.Style>
+                    <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
+                        <Setter Property="Visibility" Value="Hidden" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=cb2, Path=IsSelected}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                Aktualisieren
+            </Button>
+            <Button x:Name="ReloadNotVal" Grid.Column="1" Margin="10 0 0 0" >
                 <Button.Style>
                     <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
                         <Setter Property="Visibility" Value="Hidden" />
@@ -142,10 +168,10 @@
                                 Visibility="{Binding DataContext.Validiert, 
                                 Converter={StaticResource BoolToVis}, RelativeSource={RelativeSource AncestorType=DataGridCell}}">
                                     <TextBlock>Validiert</TextBlock>
-                                    <Button Margin="20 0 0 0" Padding="10 0 10 0" FontSize="25"                               
+                                    <Button Margin="20 0 0 0" Padding="10 0 10 0" FontSize="25" Foreground="#FF2F5778"                                
                                     cal:Message.Attach="[Event Click] = [Action Unvalidate($this)]" Cursor="Hand"
                                     cal:Action.TargetWithoutContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}">
-                                        ⎌
+                                        ⮌
                                     </Button>
                                 </StackPanel>
                             </Grid>

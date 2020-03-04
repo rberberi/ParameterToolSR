@@ -77,7 +77,7 @@
                 </TextBlock>
                 <TextBlock FontFamily="Segoe UI Light" Foreground="Gray" FontSize="25"
                       HorizontalAlignment="Center" > 
-                Version 1.0.3.0
+                Version 1.0.3
                 </TextBlock>
                 <Image Source="/Images/Gestamp_Logo.png" Height="40" Width="150"/>
             </StackPanel>

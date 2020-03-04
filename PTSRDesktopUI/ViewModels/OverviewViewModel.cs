@@ -18,11 +18,11 @@ namespace PTSRDesktopUI.ViewModels
         //Create connection to dataAccess class
         DataAccess db = new DataAccess();
 
-
+        //Constructor
         public OverviewViewModel()
         {
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
-            //Changes = new BindableCollection<ChangesModel>(db.GetChangesOverview());
+            //not validated changes are displayed first
             Changes = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesOverview());
 
             //Notify for changes
@@ -30,7 +30,22 @@ namespace PTSRDesktopUI.ViewModels
 
         }
 
-        public void Reload()
+        //Function for refresh button to reload all changes
+        public void ReloadAll()
+        {
+            Changes = new BindableCollection<ChangesModel>(db.GetChangesOverview());
+            NotifyOfPropertyChange(() => Changes);
+        }
+
+        //Function for refresh button to reload validated changes
+        public void ReloadVal()
+        {
+            Changes = new BindableCollection<ChangesModel>(db.GetValidatedChangesOverview());
+            NotifyOfPropertyChange(() => Changes);
+        }
+
+        //Function for refresh button to reload not validated changes
+        public void ReloadNotVal()
         {
             Changes = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesOverview());
             NotifyOfPropertyChange(() => Changes);
@@ -73,7 +88,7 @@ namespace PTSRDesktopUI.ViewModels
             }
         }
 
-        //Validate_Btn click event
+        //Unvalidate_Btn click event
         public void Unvalidate(ChangesModel model)
         {
             if (MessageBox.Show("Möchten Sie wirklich die Validierung rückgängig machen?", "Validierung rückgängig machen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)

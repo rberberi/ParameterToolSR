@@ -18,18 +18,34 @@ namespace PTSRDesktopUI.ViewModels
         //Create connection to dataAccess class
         DataAccess db = new DataAccess();
 
+        //Constructor
         public ControllerViewModel()
         {
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
             //Use the global variable controllerName to call data from database
-            //ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
+            //not validated changes are displayed first
             ChangesController = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesController(SelectedController.controllerName));
 
             //Notify ChangesController for changes
             NotifyOfPropertyChange(() => ChangesController);
         }
 
-        public void Reload()
+        //Function for refresh button to reload all changes
+        public void ReloadAll()
+        {
+            ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
+            NotifyOfPropertyChange(() => ChangesController);
+        }
+
+        //Function for refresh button to reload validated changes
+        public void ReloadVal()
+        {
+            ChangesController = new BindableCollection<ChangesModel>(db.GetValidatedChangesController(SelectedController.controllerName));
+            NotifyOfPropertyChange(() => ChangesController);
+        }
+
+        //Function for refresh button to reload not validated changes
+        public void ReloadNotVal()
         {
             ChangesController = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesController(SelectedController.controllerName));
             NotifyOfPropertyChange(() => ChangesController);

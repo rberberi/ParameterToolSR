@@ -19,20 +19,37 @@ namespace PTSRDesktopUI.ViewModels
         //Create new Bindable Collection variable of type ChangesModel
         public BindableCollection<ChangesModel> ChangesFacility { get; set; }
 
+        //Create connection to dataAccess class
         DataAccess db = new DataAccess();
 
+        //Constructor
         public FacilityViewModel()
         {
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
             //Use the global variable facilityName to call data from database
-            //ChangesFacility = new BindableCollection<ChangesModel>(db.GetChangesFacility(SelectedFacility.facilityName));
+            //not validated changes are displayed first
             ChangesFacility = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesFacility(SelectedFacility.facilityName));
 
             //Notify ChangesController for changes
             NotifyOfPropertyChange(() => ChangesFacility);
         }
 
-        public void Reload()
+        //Function for refresh button to reload all changes
+        public void ReloadAll()
+        {
+            ChangesFacility = new BindableCollection<ChangesModel>(db.GetChangesFacility(SelectedFacility.facilityName));
+            NotifyOfPropertyChange(() => ChangesFacility);
+        }
+
+        //Function for refresh button to reload validated changes
+        public void ReloadVal()
+        {
+            ChangesFacility = new BindableCollection<ChangesModel>(db.GetValidatedChangesFacility(SelectedFacility.facilityName));
+            NotifyOfPropertyChange(() => ChangesFacility);
+        }
+
+        //Function for refresh button to reload not validated changes
+        public void ReloadNotVal()
         {
             ChangesFacility = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesFacility(SelectedFacility.facilityName));
             NotifyOfPropertyChange(() => ChangesFacility);
@@ -75,7 +92,7 @@ namespace PTSRDesktopUI.ViewModels
             }
         }
 
-        //Validate_Btn click event
+        //Unvalidate_Btn click event
         public void Unvalidate(ChangesModel model)
         {
             if (MessageBox.Show("Möchten Sie wirklich die Validierung rückgängig machen?", "Validierung rückgängig machen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
