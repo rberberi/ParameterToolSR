@@ -29,89 +29,122 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--Logged User Grid-->
-        <Grid Grid.Row="0" HorizontalAlignment="Right" Margin="0 10 10 0">
+        <!--Header Grid-->
+        <Grid>
+            <!--Column Definitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!--Logged User label-->
-            <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="20" Margin="0 0 10 0">
-            Benutzer:
-            </TextBlock>
+            <!--Header Dropdown and Buttons Grid-->
+            <Grid Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="0 5 0 5" >
+                <!--Column Definitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <!--Drop Down ComboBox to swap between validated and not validated changes-->
+                <ComboBox x:Name="combo_bx" Grid.Column="0" SelectedIndex="2" Margin="0 5 0 5" 
+                      FontSize="20" FontFamily="Segoe UI Light">
+                    <ComboBoxItem x:Name="cb1" cal:Message.Attach="[Event Selected] = [Action AllChanges]">
+                        Alle Änderungen
+                    </ComboBoxItem>
+                    <ComboBoxItem x:Name="cb2" cal:Message.Attach="[Event Selected] = [Action ValidatedChanges]"
+                    >Validierte Änderungen
+                    </ComboBoxItem>
+                    <ComboBoxItem x:Name="cb3" cal:Message.Attach="[Event Selected] = [Action NotValidatedChanges]">
+                        Nicht Validierte Änderungen
+                    </ComboBoxItem>
+                </ComboBox>
+                <!--Reload buttons-->
+                <Button x:Name="ReloadAll" Grid.Column="1" Margin="10 0 0 0" >
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
+                            <Setter Property="Visibility" Value="Hidden" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cb1, Path=IsSelected}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    Aktualisieren
+                </Button>
+                <Button x:Name="ReloadVal" Grid.Column="1" Margin="10 0 0 0" >
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
+                            <Setter Property="Visibility" Value="Hidden" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cb2, Path=IsSelected}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    Aktualisieren
+                </Button>
+                <Button x:Name="ReloadNotVal" Grid.Column="1" Margin="10 0 0 0" >
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
+                            <Setter Property="Visibility" Value="Hidden" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cb3, Path=IsSelected}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    Aktualisieren
+                </Button>
+                <!--Validate all button-->
+                <Button Grid.Column="2" Margin="10 0 0 0" 
+                        cal:Message.Attach="[Event Click] = [Action ValidateAll]">
+                    Auswahl Validieren
+                </Button>
+                <!--Unvalidate all button-->
+                <Button Grid.Column="3" Margin="10 0 0 0" 
+                        cal:Message.Attach="[Event Click] = [Action UnValidateAll]">
+                    Auswahl Unvalidieren
+                </Button>
+                <!--View Title label-->
+            </Grid>
 
-            <!--Logged User label-->
-            <TextBlock x:Name="loggedUser_textblock" Grid.Column="1" 
-                   FontFamily="Segoe UI Light" FontSize="20"/>
-        </Grid>
-
-        <Grid Grid.Row="0" HorizontalAlignment="Left" Margin="0 5 0 5" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <!--Drop Down ComboBox to swap between validated and not validated changes-->
-            <ComboBox x:Name="combo_bx" Grid.Column="0" SelectedIndex="2" Margin="0 5 0 5" 
-                  FontSize="20" FontFamily="Segoe UI Light">
-                <ComboBoxItem x:Name="cb1" cal:Message.Attach="[Event Selected] = [Action AllChanges]">
-                    Alle Änderungen
-                </ComboBoxItem>
-                <ComboBoxItem x:Name="cb2" cal:Message.Attach="[Event Selected] = [Action ValidatedChanges]"
-                >Validierte Änderungen
-                </ComboBoxItem>
-                <ComboBoxItem x:Name="cb3" cal:Message.Attach="[Event Selected] = [Action NotValidatedChanges]">
-                    Nicht Validierte Änderungen
-                </ComboBoxItem>
-            </ComboBox>
-            <Button x:Name="ReloadAll" Grid.Column="1" Margin="10 0 0 0" >
-                <Button.Style>
-                    <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
-                        <Setter Property="Visibility" Value="Hidden" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=cb1, Path=IsSelected}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                Aktualisieren
-            </Button>
-            <Button x:Name="ReloadVal" Grid.Column="1" Margin="10 0 0 0" >
-                <Button.Style>
-                    <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
-                        <Setter Property="Visibility" Value="Hidden" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=cb2, Path=IsSelected}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                Aktualisieren
-            </Button>
-            <Button x:Name="ReloadNotVal" Grid.Column="1" Margin="10 0 0 0" >
-                <Button.Style>
-                    <Style BasedOn="{StaticResource MetroButton}" TargetType="Button">
-                        <Setter Property="Visibility" Value="Hidden" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=cb3, Path=IsSelected}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                Aktualisieren
-            </Button>
-        </Grid>
-
-        <!--View Title label-->
-        <Label x:Name="ViewTitle_Lbl" Grid.Row="0" HorizontalAlignment="Center" FontFamily="Segoe UI Light" 
+            <!--View Title label-->
+            <Label x:Name="ViewTitle_Lbl" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontFamily="Segoe UI Light" 
                    FontSize="35" Margin="0 0 0 10" />
+
+            <!--Logged User Grid-->
+            <Grid Grid.Column="2" HorizontalAlignment="Right" Margin="0 10 10 0">
+                <!--Column Definitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Logged User label-->
+                <TextBlock Grid.Column="0" FontWeight="Bold" FontSize="20" Margin="0 0 10 0">
+                Benutzer:
+                </TextBlock>
+
+                <!--Logged User label-->
+                <TextBlock x:Name="loggedUser_textblock" Grid.Column="1" 
+                       FontFamily="Segoe UI Light" FontSize="20"/>
+            </Grid>
+        </Grid>
 
         <!--Datagrid Table-->
         <DataGrid Grid.Row="1" x:Name="ChangesFacility" CanUserAddRows="False" AutoGenerateColumns="False"
                   AlternatingRowBackground="#FFF7F7F7">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="IsSelected"  Value="{Binding IsSelected, Mode=TwoWay}"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                 Header="ID" Binding="{Binding Path=ID}"/>
@@ -121,8 +154,6 @@
                                 Header="Controller" Binding="{Binding Path=Controller}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                 Header="Job" Binding="{Binding Path=Job}"/>
-                <!--<DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
-                                Header="Naht" Binding="{Binding Path=Naht}"/>-->
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                 Header="Segment" Binding="{Binding Path=Segment}"/>
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
@@ -145,15 +176,6 @@
                 <DataGridTextColumn CellStyle="{StaticResource DataGridCellCentered}" IsReadOnly="True" 
                                 Header="Änd-Dat" Binding="{Binding Path=Aenderungsdatum, 
                                 StringFormat='{}{0:dd.MM HH:mm}'}"/>
-                <!--<DataGridTemplateColumn CellStyle="{StaticResource DataGridCellCentered}" Header="Validiert" >
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox x:Name="Validated_CB" IsChecked="{Binding Path=Validiert, 
-                                    UpdateSourceTrigger=PropertyChanged}"
-                                    HorizontalAlignment="Center" IsHitTestVisible="False"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>-->
                 <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellCentered}" Header="Validierung">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

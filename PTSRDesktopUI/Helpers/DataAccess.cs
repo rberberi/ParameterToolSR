@@ -127,6 +127,9 @@ namespace PTSRDesktopUI.Helpers
         }
         #endregion
 
+        #region Validierung
+
+        //Function to validate changes
         public void CheckValidate(ChangesModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
@@ -137,6 +140,7 @@ namespace PTSRDesktopUI.Helpers
             }
         }
 
+        //Function to undo the validation
         public void UnCheckValidate(ChangesModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
@@ -146,5 +150,7 @@ namespace PTSRDesktopUI.Helpers
                 connection.Execute(sql, parameters);
             }
         }
+        #endregion
+
     }
 }

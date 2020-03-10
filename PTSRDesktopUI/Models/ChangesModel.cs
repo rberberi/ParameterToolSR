@@ -26,7 +26,12 @@ namespace PTSRDesktopUI.Models
             set { _validiert = value; NotifyPropertyChanged(); }
         }
 
-        //public DateTime? Validierungsdatum { get; set; }
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set { _isSelected = value; NotifyPropertyChanged(); }
+        }
 
         private DateTime? _validierungsdatum;
         public DateTime? Validierungsdatum

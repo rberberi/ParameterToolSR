@@ -8,6 +8,7 @@ namespace PTSRDesktopUI.ViewModels
 {
     public class ControllerViewModel : Screen
     {
+        //Variables
         private readonly IWindowManager manager = new WindowManager();
         private string _path;
         private int _id;
@@ -70,6 +71,50 @@ namespace PTSRDesktopUI.ViewModels
         {
             ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
             NotifyOfPropertyChange(() => ChangesController);
+        }
+
+        //ValidateAll_Btn click event
+        public void ValidateAll()
+        {
+            if (MessageBox.Show("Möchten Sie wirklich validieren?", "Validieren", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                foreach (var model in ChangesController)
+                {
+                    if (model.IsSelected)
+                    {
+                        model.Validiert = true;
+                        model.Validierungsdatum = DateTime.Now;
+                        model.ValidiertVon = LoggedUser.loggedUser;
+                        db.CheckValidate(model);
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        //UnvalidateAll_Btn click event
+        public void UnValidateAll()
+        {
+            if (MessageBox.Show("Möchten Sie wirklich die Validierung rückgängig machen?", "Validierung rückgängig machen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                foreach (var model in ChangesController)
+                {
+                    if (model.IsSelected)
+                    {
+                        model.Validiert = false;
+                        model.Validierungsdatum = null;
+                        model.ValidiertVon = null;
+                        db.UnCheckValidate(model);
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
         }
 
         //Validate_Btn click event

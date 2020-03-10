@@ -2,16 +2,13 @@
 using PTSRDesktopUI.Helpers;
 using PTSRDesktopUI.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PTSRDesktopUI.ViewModels
 {
     class FacilityViewModel : Screen
     {
+        //Variables
         private readonly IWindowManager manager = new WindowManager();
         private string _path;
         private int _id;
@@ -74,6 +71,50 @@ namespace PTSRDesktopUI.ViewModels
         {
             ChangesFacility = new BindableCollection<ChangesModel>(db.GetChangesFacility(SelectedFacility.facilityName));
             NotifyOfPropertyChange(() => ChangesFacility);
+        }
+
+        //ValidateAll_Btn click event
+        public void ValidateAll()
+        {
+            if (MessageBox.Show("Möchten Sie wirklich validieren?", "Validieren", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                foreach (var model in ChangesFacility)
+                {
+                    if (model.IsSelected)
+                    {
+                        model.Validiert = true;
+                        model.Validierungsdatum = DateTime.Now;
+                        model.ValidiertVon = LoggedUser.loggedUser;
+                        db.CheckValidate(model);
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        //UnvalidateAll_Btn click event
+        public void UnValidateAll()
+        {
+            if (MessageBox.Show("Möchten Sie wirklich die Validierung rückgängig machen?", "Validierung rückgängig machen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                foreach (var model in ChangesFacility)
+                {
+                    if (model.IsSelected)
+                    {
+                        model.Validiert = false;
+                        model.Validierungsdatum = null;
+                        model.ValidiertVon = null;
+                        db.UnCheckValidate(model);
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
         }
 
         //Validate_Btn click event

@@ -27,9 +27,9 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <MinimumRequiredVersion>1.0.3.6</MinimumRequiredVersion>
-    <ApplicationRevision>7</ApplicationRevision>
-    <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
+    <MinimumRequiredVersion>1.1.0.0</MinimumRequiredVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -287,37 +287,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icon2.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo3.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\logo4.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo4.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\logo_final.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo_final.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="applogo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\info.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\infoicon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\infoicon_8Ve_icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Gestamp_Logo.png" />
