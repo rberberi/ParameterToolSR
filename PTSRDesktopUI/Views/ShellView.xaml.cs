@@ -58,47 +58,47 @@ namespace PTSRDesktopUI.Views
 
         private void Btn_OP7012_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "OP70_12";
+            SelectedController.controllerName = "OP70_21";
         }
 
         private void Btn_OP7013_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "OP70_13";
+            SelectedController.controllerName = "OP70_31";
         }
 
         private void Btn_OP7014_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "OP70_14";
+            SelectedController.controllerName = "OP70_41";
         }
 
         private void Btn_2WD_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "2WD";
+            SelectedController.controllerName = "Audi_B9_2WD";
         }
 
         private void Btn_4WD_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "4WD";
+            SelectedController.controllerName = "Audi_B9_4WD";
         }
 
         private void Btn_OP10_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "OP10";
+            SelectedController.controllerName = "UKL_VAT_OP10";
         }
 
         private void Btn_OP40_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "OP40";
+            SelectedController.controllerName = "UKL_VAT_OP40";
         }
 
         private void Btn_QLLinks_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "QL_Links";
+            SelectedController.controllerName = "40_11";
         }
 
         private void Btn_QLRechts_Click(object sender, RoutedEventArgs e)
         {
-            SelectedController.controllerName = "QL_Rechts";
+            SelectedController.controllerName = "40_12";
         }
 
         #endregion

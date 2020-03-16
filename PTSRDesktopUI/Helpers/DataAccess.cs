@@ -3,10 +3,7 @@ using PTSRDesktopUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PTSRDesktopUI.Helpers
 {
@@ -130,14 +127,30 @@ namespace PTSRDesktopUI.Helpers
         }
         #endregion
 
+        #region Validierung
+
+        //Function to validate changes
         public void CheckValidate(ChangesModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
             {
                 var parameters = new { validiert = model.Validiert, validierungsdatum = model.Validierungsdatum, validiertvon=model.ValidiertVon, id = model.ID };
-                var sql = "UPDATE paramChanges SET Validiert=@validiert, Validierungsdatum = @validierungsdatum, ValidiertVon=@validiertvon FROM paramChanges WHERE ID = @id";
+                var sql = "UPDATE ChangesNeu SET Validiert=@validiert, Validierungsdatum = @validierungsdatum, ValidiertVon=@validiertvon FROM ChangesNeu WHERE ID = @id";
                 connection.Execute(sql, parameters);
             }
         }
+
+        //Function to undo the validation
+        public void UnCheckValidate(ChangesModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(DBHelper.CnnVal("ptsrDB")))
+            {
+                var parameters = new { validiert = model.Validiert, validierungsdatum = model.Validierungsdatum, validiertvon = model.ValidiertVon, id = model.ID };
+                var sql = "UPDATE ChangesNeu SET Validiert=@validiert, Validierungsdatum = @validierungsdatum, ValidiertVon=@validiertvon FROM ChangesNeu WHERE ID = @id";
+                connection.Execute(sql, parameters);
+            }
+        }
+        #endregion
+
     }
 }

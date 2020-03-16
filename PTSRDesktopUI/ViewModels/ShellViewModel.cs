@@ -1,15 +1,7 @@
 ﻿using Caliburn.Micro;
 using PTSRDesktopUI.EventModels;
-using PTSRDesktopUI.Helpers;
-using PTSRDesktopUI.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Markup;
 
 namespace PTSRDesktopUI.ViewModels
 {
@@ -25,13 +17,20 @@ namespace PTSRDesktopUI.ViewModels
         public ShellViewModel(IEventAggregator events,
             SimpleContainer container, LoginViewModel loginVM)
         {
-            _events = events;
-            _container = container;
+            try
+            {
+                _events = events;
+                _container = container;
 
-            _events.Subscribe(this);
+                _events.Subscribe(this);
 
-            ActivateItem(_container.GetInstance<LoginViewModel>());
-
+                ActivateItem(_container.GetInstance<LoginViewModel>());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.StackTrace);
+            }
         }
 
         //Is Side Menu Visible Property
@@ -63,12 +62,14 @@ namespace PTSRDesktopUI.ViewModels
             ActivateItem(facilityVM);
         }
 
+        //Hide the submenu function
         public void HideMenu()
         {
             showMenu = 0;
             NotifyOfPropertyChange(() => IsSideMenuVisible);
         }
 
+        //Show the submenu funtion
         public void ShowMenu()
         {
             showMenu = 1;

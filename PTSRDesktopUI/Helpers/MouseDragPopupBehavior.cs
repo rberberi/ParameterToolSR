@@ -9,6 +9,7 @@ using System.Windows.Interactivity;
 
 namespace PTSRDesktopUI.Helpers
 {
+    //Class for the path info popup
     public class MouseDragPopupBehavior : Behavior<Popup>
     {
         private bool mouseDown;

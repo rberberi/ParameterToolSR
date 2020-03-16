@@ -8,6 +8,7 @@ namespace PTSRDesktopUI.ViewModels
 {
     public class ControllerViewModel : Screen
     {
+        //Variables
         private readonly IWindowManager manager = new WindowManager();
         private string _path;
         private int _id;
@@ -18,13 +19,36 @@ namespace PTSRDesktopUI.ViewModels
         //Create connection to dataAccess class
         DataAccess db = new DataAccess();
 
+        //Constructor
         public ControllerViewModel()
         {
             //get the changes from dataAccess function and store them as a bindabla collection in Changes
             //Use the global variable controllerName to call data from database
-            ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
+            //not validated changes are displayed first
+            ChangesController = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesController(SelectedController.controllerName));
 
             //Notify ChangesController for changes
+            NotifyOfPropertyChange(() => ChangesController);
+        }
+
+        //Function for refresh button to reload all changes
+        public void ReloadAll()
+        {
+            ChangesController = new BindableCollection<ChangesModel>(db.GetChangesController(SelectedController.controllerName));
+            NotifyOfPropertyChange(() => ChangesController);
+        }
+
+        //Function for refresh button to reload validated changes
+        public void ReloadVal()
+        {
+            ChangesController = new BindableCollection<ChangesModel>(db.GetValidatedChangesController(SelectedController.controllerName));
+            NotifyOfPropertyChange(() => ChangesController);
+        }
+
+        //Function for refresh button to reload not validated changes
+        public void ReloadNotVal()
+        {
+            ChangesController = new BindableCollection<ChangesModel>(db.GetNotValidatedChangesController(SelectedController.controllerName));
             NotifyOfPropertyChange(() => ChangesController);
         }
 
@@ -49,14 +73,80 @@ namespace PTSRDesktopUI.ViewModels
             NotifyOfPropertyChange(() => ChangesController);
         }
 
+        //ValidateAll_Btn click event
+        public void ValidateAll()
+        {
+            if (MessageBox.Show("Möchten Sie wirklich validieren?", "Validieren", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                foreach (var model in ChangesController)
+                {
+                    if (model.IsSelected)
+                    {
+                        model.Validiert = true;
+                        model.Validierungsdatum = DateTime.Now;
+                        model.ValidiertVon = LoggedUser.loggedUser;
+                        db.CheckValidate(model);
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        //UnvalidateAll_Btn click event
+        public void UnValidateAll()
+        {
+            if (MessageBox.Show("Möchten Sie wirklich die Validierung rückgängig machen?", "Validierung rückgängig machen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                foreach (var model in ChangesController)
+                {
+                    if (model.IsSelected)
+                    {
+                        model.Validiert = false;
+                        model.Validierungsdatum = null;
+                        model.ValidiertVon = null;
+                        db.UnCheckValidate(model);
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
         //Validate_Btn click event
         public void Validate(ChangesModel model)
         {
-            model.Validiert = true;
-            model.Validierungsdatum = DateTime.Now;
-            model.ValidiertVon = LoggedUser.loggedUser;
-            db.CheckValidate(model);
-            MessageBox.Show("Validierung gespeichert.", "Erfolg!", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (MessageBox.Show("Möchten Sie wirklich validieren?", "Validieren", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                model.Validiert = true;
+                model.Validierungsdatum = DateTime.Now;
+                model.ValidiertVon = LoggedUser.loggedUser;
+                db.CheckValidate(model);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        //Unalidate_Btn click event
+        public void Unvalidate(ChangesModel model)
+        {
+            if (MessageBox.Show("Möchten Sie wirklich die Validierung rückgängig machen?", "Validierung rückgängig machen", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                model.Validiert = false;
+                model.Validierungsdatum = null;
+                model.ValidiertVon = null;
+                db.UnCheckValidate(model);
+            }
+            else
+            {
+                return;
+            }
         }
 
         //Show parameter path

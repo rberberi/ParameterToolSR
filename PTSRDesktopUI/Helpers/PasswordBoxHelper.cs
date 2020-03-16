@@ -9,6 +9,7 @@ using System.Windows.Controls;
 
 namespace PTSRDesktopUI.Helpers
 {
+    //Class for login password box
     public static class PasswordBoxHelper
     {
         public static readonly DependencyProperty BoundPasswordProperty =

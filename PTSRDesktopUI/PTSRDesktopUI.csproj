@@ -27,9 +27,9 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <MinimumRequiredVersion>1.0.2.4</MinimumRequiredVersion>
-    <ApplicationRevision>5</ApplicationRevision>
-    <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
+    <MinimumRequiredVersion>1.1.0.0</MinimumRequiredVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -270,7 +270,9 @@
     <None Include="PTSRDesktopUI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -285,37 +287,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="icon2.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo3.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\logo4.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo4.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\logo_final.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo_final.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="applogo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\info.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\infoicon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\infoicon_8Ve_icon.ico" />
+    <Resource Include="Images\Gestamp_Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

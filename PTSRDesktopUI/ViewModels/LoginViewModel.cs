@@ -1,13 +1,8 @@
 ﻿using Caliburn.Micro;
-using MahApps.Metro.Controls;
 using PTSRDesktopUI.EventModels;
 using PTSRDesktopUI.Helpers;
 using PTSRDesktopUI.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PTSRDesktopUI.ViewModels
